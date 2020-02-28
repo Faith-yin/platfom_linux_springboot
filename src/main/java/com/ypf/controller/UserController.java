@@ -40,9 +40,9 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     private JsonResult addUser(User user) {
+        //校验要修改的用户名称是否已存在
         List<User> list = userService.findUserByName(user.getUsername());
         if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
-        //要添加的此用户名在原表中不存在
         int mark = userService.addUser(user);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
@@ -57,6 +57,9 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/updateUserByName",method = RequestMethod.PUT)
     private JsonResult updateUserByName(User user) {
+        //校验要修改的用户名称是否已存在
+        List<User> list = userService.findUserByName(user.getUsername());
+        if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
         int mark = userService.updateUserByName(user);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
