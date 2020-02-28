@@ -2,5 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.ypf.mapper.AdminMapper">
+    
+    <!--查询全部-->
+    <select id="showAllAdmin" resultType="Admin">
+        select * from admin
+    </select>
+
+    <!--条件查询：根据名称查询-->
+    <select id="findAdminByName" parameterType="String" resultType="Admin">
+        select * from admin where username=#{username}
+    </select>
+
+    <!--添加-->
+    <insert id="addAdmin" parameterType="Admin">
+        insert into admin (username,password) values (#{username},#{password})
+    </insert>
+
 
 </mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ypf.mapper.UserMapper">
+
+    <!--查询全部-->
+    <select id="showAllUser" resultType="User">
+        select * from user where deleteFlag = 0
+    </select>
+
+    <!--条件查询：根据用户名称查询-->
+    <select id="findUserByName" parameterType="String" resultType="User">
+        select * from user where username = #{username} and deleteFlag = 0
+    </select>
+
+    <!--条件查询：根据用户名称 和 用户密码查询-->
+    <select id="findUserByNameAndPassword" parameterType="User" resultType="User">
+        select * from user where username=#{username} and password=#{password} and deleteFlag=0
+    </select>
+
+    <!--添加-->
+    <insert id="addUser" parameterType="User">
+        insert user (username,password)
+        values (#{username},#{password})
+    </insert>
+
+    <!--修改-->
+    <update id="updateUserByName" parameterType="User">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="username!=null">username=#{username},</if>
+            <if test="sex!=null">sex=#{sex},</if>
+            <if test="birthday!=null">birthday=#{birthday},</if>
+            <if test="description!=null">description=#{description},</if>
+        </trim>
+        where id = #{id} and deleteFlag = 0
+    </update>
+
+    <!--删除-->
+    <update id="deleteUserByName" parameterType="String">
+        update user set deleteFlag=1 where username=#{username} and deleteFlag=0
+    </update>
+
+
+</mapper>
