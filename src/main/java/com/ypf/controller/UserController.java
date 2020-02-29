@@ -26,7 +26,7 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllUser",method = RequestMethod.GET)
-    private JsonResult list() {
+    private JsonResult showAllUser() {
         List<User> list = userService.showAllUser();
         return jsonResult.ok(list);
     }
@@ -43,6 +43,7 @@ public class UserController {
         //校验要修改的用户名称是否已存在
         List<User> list = userService.findUserByName(user.getUsername());
         if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
+        //不存在时
         int mark = userService.addUser(user);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
@@ -60,6 +61,7 @@ public class UserController {
         //校验要修改的用户名称是否已存在
         List<User> list = userService.findUserByName(user.getUsername());
         if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
+        //不存在时
         int mark = userService.updateUserByName(user);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
@@ -68,13 +70,13 @@ public class UserController {
 
     /**
      * 删除
-     * @param username
+     * @param id
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/deleteUserByName",method = RequestMethod.DELETE)
-    private JsonResult deleteUserByName(String username) {
-        int mark = userService.deleteUserByName(username);
+    private JsonResult deleteUserById(int id) {
+        int mark = userService.deleteUserById(id);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

@@ -20,8 +20,7 @@
 
     <!--添加-->
     <insert id="addUser" parameterType="User">
-        insert user (username,password)
-        values (#{username},#{password})
+        insert user (username,password) values (#{username},#{password})
     </insert>
 
     <!--修改-->
@@ -37,8 +36,8 @@
     </update>
 
     <!--删除-->
-    <update id="deleteUserByName" parameterType="String">
-        update user set deleteFlag=1 where username=#{username} and deleteFlag=0
+    <update id="deleteUserById" parameterType="int">
+        update user set deleteFlag=1 where id=#{id} and deleteFlag=0
     </update>
 
 

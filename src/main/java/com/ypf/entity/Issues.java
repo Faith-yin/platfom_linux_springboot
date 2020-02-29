@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * issues问题列表信息
@@ -16,9 +16,9 @@ public class Issues {
 
     private int id; //id
     private String title; //题目
-    private Date date; //提出日期
+    private Timestamp date; //提出时间
     private int viewCount; //浏览次数
-    private String presenter; //提出者
+    private int userId; //提出者用户id
     private int deleteFlag; //是否删除
 
 

@@ -14,7 +14,7 @@ public class IssuesComment {
 
     private int id; //id
     private int issueId; //issue问题id
-    private String username; //评论用户名
+    private int userId; //评论者用户id
     private String date; //评论日期
     private String content; //评论内容
 

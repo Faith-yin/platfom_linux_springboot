@@ -52,9 +52,8 @@ public class JsonResult {
         return new JsonResult(500, message, null);
     }
 
+
     public JsonResult() {}
-
-
 
     public JsonResult(Integer status, String message, Object data) {
         this.status = status;

@@ -22,6 +22,6 @@ public interface IUserService {
     int updateUserByName(User user);
 
     //删除
-    int deleteUserByName(String username);
+    int deleteUserById(int id);
 
 }
