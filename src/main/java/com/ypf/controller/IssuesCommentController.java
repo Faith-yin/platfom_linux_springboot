@@ -44,6 +44,18 @@ public class IssuesCommentController {
 
 
     /**
+     * 添加
+     */
+    @ResponseBody
+    @RequestMapping(value = "/addIssuesComment",method = RequestMethod.POST)
+    private JsonResult addIssuesComment(IssuesComment issuesComment) {
+        int mark = issuesCommentService.addIssuesComment(issuesComment);
+        if(mark == 1) return jsonResult.ok();
+        return jsonResult.errorMessage("操作失败");
+    }
+
+
+    /**
      * 删除
      */
     @ResponseBody

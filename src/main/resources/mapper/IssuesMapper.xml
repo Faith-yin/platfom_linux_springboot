@@ -15,7 +15,7 @@
 
     <!--添加-->
     <insert id="addIssues" parameterType="Issues">
-        insert issues (title,date,userId) values (#{title},#{date},#{userId})
+        insert into issues (title,date,userId) values (#{title},#{date},#{userId})
     </insert>
 
     <!--修改-->

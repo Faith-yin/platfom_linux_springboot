@@ -19,6 +19,6 @@ public class IssuesComment {
     private int userId; //评论者用户id
     private Timestamp date; //评论日期
     private String content; //评论内容
-    private int delteFlag; //是否删除
+    private int deleteFlag; //是否删除
 
 }

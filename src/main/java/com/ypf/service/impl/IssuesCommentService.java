@@ -30,6 +30,13 @@ public class IssuesCommentService implements IIssuesCommentService {
         return list;
     }
 
+    //添加
+    @Override
+    public int addIssuesComment(IssuesComment issuesComment) {
+        int mark = issuesCommentMapper.addIssuesComment(issuesComment);
+        return mark;
+    }
+
     //删除
     @Override
     public int deleteIssuesComment(int id) {

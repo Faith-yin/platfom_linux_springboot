@@ -13,6 +13,9 @@ public interface IIssuesCommentService {
     //条件查询：根据归属问题issueId查询
     List<IssuesComment> findIssuesCommentByIssuesId(int issueId);
 
+    //添加
+    int addIssuesComment(IssuesComment issuesComment);
+
     //删除
     int deleteIssuesComment(int id);
 

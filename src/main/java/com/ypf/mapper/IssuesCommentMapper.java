@@ -1,6 +1,5 @@
 package com.ypf.mapper;
 
-
 import com.ypf.entity.IssuesComment;
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +12,12 @@ public interface IssuesCommentMapper {
     List<IssuesComment> showAllIssuesComment();
 
     //条件查询：根据归属问题issueId查询
-    List<IssuesComment> findIssuesCommentByIssuesId(int id);
+    List<IssuesComment> findIssuesCommentByIssuesId(int issueId);
+
+    //添加
+    int addIssuesComment(IssuesComment issuesComment);
 
     //删除
-    int deleteIssuesComment(int issueId);
+    int deleteIssuesComment(int id);
 
 }

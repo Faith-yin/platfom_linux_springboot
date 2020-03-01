@@ -20,7 +20,7 @@
 
     <!--添加-->
     <insert id="addUser" parameterType="User">
-        insert user (username,password) values (#{username},#{password})
+        insert into user (username,password) values (#{username},#{password})
     </insert>
 
     <!--修改-->

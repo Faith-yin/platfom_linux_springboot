@@ -13,6 +13,12 @@
         select * from issuescomment where issueId=#{issueId} and deleteFlag=0
     </select>
 
+    <!--添加-->
+    <insert id="addIssuesComment" parameterType="IssuesComment">
+        insert into issuescomment (issueId,userId,date,content)
+        values (#{issueId},#{userId},#{date},#{content})
+    </insert>
+
     <!--删除-->
     <update id="deleteIssuesComment" parameterType="int">
         update issuescomment set deleteFlag=1 where id=#{id} and deleteFlag=0
