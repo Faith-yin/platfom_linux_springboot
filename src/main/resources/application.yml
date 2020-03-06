@@ -12,3 +12,8 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.ypf.entity
+
+#fastdfs_ip: http://192.168.128.130/
+fastdfs_ip: http://images/
+
+
