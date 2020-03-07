@@ -14,6 +14,6 @@ mybatis:
   type-aliases-package: com.ypf.entity
 
 #fastdfs_ip: http://192.168.128.130/
-fastdfs_ip: http://images/
+fastdfs_ip: http://centos/
 
 
