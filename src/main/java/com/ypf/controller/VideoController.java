@@ -1,7 +1,7 @@
 package com.ypf.controller;
 
-import com.ypf.entity.OutsideLink;
-import com.ypf.service.impl.OutsidelinkService;
+import com.ypf.entity.Video;
+import com.ypf.service.impl.VideoService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("/outsidelink")
-public class OutsidelinkController {
+@RequestMapping("/video")
+public class VideoController {
+
 
     @Autowired
-    private OutsidelinkService outsidelinkService;
+    private VideoService videoService;
     private JsonResult jsonResult;
 
 
@@ -24,9 +25,9 @@ public class OutsidelinkController {
      * 查询全部
      */
     @ResponseBody
-    @RequestMapping(value = "/showAllOutsidelink",method = RequestMethod.GET)
-    private JsonResult showAllOutsidelink() {
-        List<OutsideLink> list = outsidelinkService.showAllOutsidelink();
+    @RequestMapping(value = "/showAllVideo",method = RequestMethod.GET)
+    private JsonResult showAllVideo() {
+        List<Video> list = videoService.showAllVideo();
         return jsonResult.ok(list);
     }
 
@@ -35,9 +36,9 @@ public class OutsidelinkController {
      * 添加
      */
     @ResponseBody
-    @RequestMapping(value = "/addOutsidelink",method = RequestMethod.POST)
-    private JsonResult addOutsidelink(OutsideLink outsideLink) {
-        int mark = outsidelinkService.addOutsidelink(outsideLink);
+    @RequestMapping(value = "/addVideo",method = RequestMethod.POST)
+    private JsonResult addVideo(Video video) {
+        int mark = videoService.addVideo(video);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }
@@ -47,9 +48,9 @@ public class OutsidelinkController {
      * 修改
      */
     @ResponseBody
-    @RequestMapping(value = "/updateOutsidelink",method = RequestMethod.PUT)
-    private JsonResult updateOutsidelink(OutsideLink outsideLink) {
-        int mark = outsidelinkService.updateOutsidelink(outsideLink);
+    @RequestMapping(value = "/updateVideo",method = RequestMethod.PUT)
+    private JsonResult updateVideo(Video video) {
+        int mark = videoService.updateVideo(video);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }
@@ -59,12 +60,13 @@ public class OutsidelinkController {
      * 删除
      */
     @ResponseBody
-    @RequestMapping(value = "/deleteOutsidelink",method = RequestMethod.DELETE)
-    private JsonResult deleteOutsidelink(int id) {
-        int mark = outsidelinkService.deleteOutsidelink(id);
+    @RequestMapping(value = "/deleteVideo",method = RequestMethod.DELETE)
+    private JsonResult deleteVideo(int id) {
+        int mark = videoService.deleteVideo(id);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }
+
 
 
 

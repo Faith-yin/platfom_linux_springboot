@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -19,7 +20,7 @@ public class Video {
     private String content; //内容
     private String link; //链接
     private int adminId; //发布者管理员id
-    private Date date; //日期
+    private Timestamp date; //日期
     private int viewCount; //浏览次数
     private int deleteFlag; //是否删除
 
