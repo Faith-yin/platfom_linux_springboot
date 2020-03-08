@@ -5,6 +5,7 @@ import com.ypf.service.impl.AdminService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,7 +39,7 @@ public class AdminController {
      */
     @ResponseBody
     @RequestMapping(value = "addAdmin",method = RequestMethod.POST)
-    private JsonResult addAdmin(Admin admin) {
+    private JsonResult addAdmin(@RequestBody Admin admin) {
         List<Admin> list = adminService.findAdminByName(admin.getUsername());
         if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
         //要添加的此管理员名称在表中不存在

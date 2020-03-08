@@ -5,6 +5,7 @@ import com.ypf.service.impl.InformationService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,7 +48,7 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/addInformation",method = RequestMethod.POST)
-    private JsonResult addInformation(Information information) {
+    private JsonResult addInformation(@RequestBody Information information) {
         int mark = informationService.addInformation(information);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
@@ -59,7 +60,7 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateInformation",method = RequestMethod.PUT)
-    private JsonResult updateInformation(Information information) {
+    private JsonResult updateInformation(@RequestBody Information information) {
         int mark = informationService.updateInformation(information);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");

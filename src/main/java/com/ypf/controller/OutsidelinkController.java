@@ -5,6 +5,7 @@ import com.ypf.service.impl.OutsidelinkService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +37,7 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/addOutsidelink",method = RequestMethod.POST)
-    private JsonResult addOutsidelink(OutsideLink outsideLink) {
+    private JsonResult addOutsidelink(@RequestBody OutsideLink outsideLink) {
         int mark = outsidelinkService.addOutsidelink(outsideLink);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
@@ -48,7 +49,7 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateOutsidelink",method = RequestMethod.PUT)
-    private JsonResult updateOutsidelink(OutsideLink outsideLink) {
+    private JsonResult updateOutsidelink(@RequestBody OutsideLink outsideLink) {
         int mark = outsidelinkService.updateOutsidelink(outsideLink);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");

@@ -5,6 +5,7 @@ import com.ypf.service.impl.ArticleService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +37,7 @@ public class ArticleController {
      */
     @ResponseBody
     @RequestMapping(value = "/addArticle",method = RequestMethod.POST)
-    private JsonResult addArticle(Article article) {
+    private JsonResult addArticle(@RequestBody Article article) {
         int mark = articleService.addArticle(article);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
@@ -48,7 +49,7 @@ public class ArticleController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateArticle",method = RequestMethod.PUT)
-    private JsonResult updateArticle(Article article) {
+    private JsonResult updateArticle(@RequestBody Article article) {
         int mark = articleService.updateArticle(article);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");

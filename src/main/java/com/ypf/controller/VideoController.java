@@ -5,6 +5,7 @@ import com.ypf.service.impl.VideoService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,7 +38,7 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/addVideo",method = RequestMethod.POST)
-    private JsonResult addVideo(Video video) {
+    private JsonResult addVideo(@RequestBody Video video) {
         int mark = videoService.addVideo(video);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
@@ -49,7 +50,7 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateVideo",method = RequestMethod.PUT)
-    private JsonResult updateVideo(Video video) {
+    private JsonResult updateVideo(@RequestBody Video video) {
         int mark = videoService.updateVideo(video);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
