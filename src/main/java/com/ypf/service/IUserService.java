@@ -19,7 +19,7 @@ public interface IUserService {
     int addUser(User user);
 
     //修改
-    int updateUserByName(User user);
+    int updateUserById(User user);
 
     //删除
     int deleteUserById(int id);

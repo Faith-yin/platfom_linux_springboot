@@ -24,7 +24,7 @@
     </insert>
 
     <!--修改-->
-    <update id="updateUserByName" parameterType="User">
+    <update id="updateUserById" parameterType="User">
         update user
         <trim prefix="set" suffixOverrides=",">
             <if test="username!=null">username=#{username},</if>

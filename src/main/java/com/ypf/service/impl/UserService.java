@@ -45,8 +45,8 @@ public class UserService implements IUserService {
 
     //修改
     @Override
-    public int updateUserByName(User user) {
-        int mark = userMapper.updateUserByName(user);
+    public int updateUserById(User user) {
+        int mark = userMapper.updateUserById(user);
         return mark;
     }
 

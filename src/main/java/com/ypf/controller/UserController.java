@@ -56,13 +56,13 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/updateUserByName",method = RequestMethod.PUT)
-    private JsonResult updateUserByName(User user) {
+    @RequestMapping(value = "/updateUserById",method = RequestMethod.PUT)
+    private JsonResult updateUserById(User user) {
         //校验要修改的用户名称是否已存在
         List<User> list = userService.findUserByName(user.getUsername());
         if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
         //不存在时
-        int mark = userService.updateUserByName(user);
+        int mark = userService.updateUserById(user);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }
@@ -74,7 +74,7 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/deleteUserByName",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteUserById",method = RequestMethod.DELETE)
     private JsonResult deleteUserById(int id) {
         int mark = userService.deleteUserById(id);
         if(mark == 1) return jsonResult.ok();
