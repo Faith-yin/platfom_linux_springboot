@@ -9,6 +9,9 @@ public interface IIssuesService {
     //查询全部
     List<Issues> showAllIssues();
 
+    //条件查询：根据id查询
+    List<Issues> findIssuesById(int id);
+
     //条件查询：根据提出者用户id查询
     List<Issues> findIssuesByUserId(int id);
 

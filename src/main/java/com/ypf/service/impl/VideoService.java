@@ -24,6 +24,13 @@ public class VideoService implements IVideoService {
         return list;
     }
 
+    //条件查询：按照id查询
+    @Override
+    public List<Video> findVideoById(int id) {
+        List<Video> list = videoMapper.findVideoById(id);
+        return list;
+    }
+
     //添加
     @Override
     public int addVideo(Video video) {

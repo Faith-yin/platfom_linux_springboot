@@ -23,6 +23,13 @@ public class IssuesService implements IIssuesService {
         return list;
     }
 
+    //条件查询：根据id查询
+    @Override
+    public List<Issues> findIssuesById(int id) {
+        List<Issues> list = issuesMapper.findIssuesById(id);
+        return list;
+    }
+
     //条件查询：根据提出者用户id查询
     @Override
     public List<Issues> findIssuesByUserId(int id) {

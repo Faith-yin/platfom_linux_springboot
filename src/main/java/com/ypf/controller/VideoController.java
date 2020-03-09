@@ -34,6 +34,17 @@ public class VideoController {
 
 
     /**
+     * 条件查询：按照id查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findVideoById",method = RequestMethod.GET)
+    private JsonResult findVideoById(int id) {
+        List<Video> list = videoService.findVideoById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 添加
      */
     @ResponseBody
@@ -52,7 +63,10 @@ public class VideoController {
     @RequestMapping(value = "/updateVideo",method = RequestMethod.PUT)
     private JsonResult updateVideo(@RequestBody Video video) {
         int mark = videoService.updateVideo(video);
-        if(mark == 1) return jsonResult.ok();
+        if(mark == 1) {
+            List<Video> list = videoService.findVideoById(video.getId());
+            return jsonResult.ok(list);
+        }
         return jsonResult.errorMessage("操作失败");
     }
 

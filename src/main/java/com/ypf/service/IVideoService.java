@@ -9,6 +9,9 @@ public interface IVideoService {
     //查询全部
     List<Video> showAllVideo();
 
+    //条件查询：按照id查询
+    List<Video> findVideoById(int id);
+
     //添加
     int addVideo(Video video);
 

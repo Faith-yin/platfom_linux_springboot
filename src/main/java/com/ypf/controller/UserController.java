@@ -42,7 +42,7 @@ public class UserController {
         List<User> list = userService.findUserByNameAndPassword(user);
         //检验查询的用户名和密码是否已注册
         //未注册时：
-        if(list == null || list.isEmpty()) return jsonResult.errorMessage("此用户未注册");
+        if(list == null || list.isEmpty()) return jsonResult.errorMessage("用户名或密码输入错误");
         //已注册：
         return jsonResult.ok(list);
     }

@@ -33,6 +33,17 @@ public class ArticleController {
 
 
     /**
+     * 条件查询：按照id查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findArticleById",method = RequestMethod.GET)
+    private JsonResult findArticleById(int id) {
+        List<Article> list = articleService.findArticleById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 添加
      */
     @ResponseBody
@@ -51,7 +62,10 @@ public class ArticleController {
     @RequestMapping(value = "/updateArticle",method = RequestMethod.PUT)
     private JsonResult updateArticle(@RequestBody Article article) {
         int mark = articleService.updateArticle(article);
-        if(mark == 1) return jsonResult.ok();
+        if(mark == 1) {
+            List<Article> list = articleService.findArticleById(article.getId());
+            return jsonResult.ok(list);
+        }
         return jsonResult.errorMessage("操作失败");
     }
 

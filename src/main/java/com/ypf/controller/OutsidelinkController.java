@@ -33,6 +33,17 @@ public class OutsidelinkController {
 
 
     /**
+     * 条件查询：按照id查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findOutsidelinkById",method = RequestMethod.GET)
+    private JsonResult findOutsidelinkById(int id) {
+        List<OutsideLink> list = outsidelinkService.findOutsidelinkById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 添加
      */
     @ResponseBody
@@ -51,7 +62,10 @@ public class OutsidelinkController {
     @RequestMapping(value = "/updateOutsidelink",method = RequestMethod.PUT)
     private JsonResult updateOutsidelink(@RequestBody OutsideLink outsideLink) {
         int mark = outsidelinkService.updateOutsidelink(outsideLink);
-        if(mark == 1) return jsonResult.ok();
+        if(mark == 1) {
+            List<OutsideLink> list = outsidelinkService.findOutsidelinkById(outsideLink.getId());
+            return jsonResult.ok(list);
+        }
         return jsonResult.errorMessage("操作失败");
     }
 

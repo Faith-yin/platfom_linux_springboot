@@ -11,6 +11,9 @@ public interface InformationMapper {
     //查询全部
     List<Information> showAllInformation();
 
+    //条件查询：按照id查询
+    List<Information> findInformationById(int id);
+
     //条件查询：按照管理员id查询
     List<Information> findInformationByAdminId(int adminId);
 

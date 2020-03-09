@@ -33,6 +33,17 @@ public class InformationController {
 
 
     /**
+     *条件查询：按照id查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findInformationById",method = RequestMethod.GET)
+    private JsonResult findInformationById(int id) {
+        List<Information> list = informationService.findInformationById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 条件查询：按照管理员id查询
      */
     @ResponseBody
@@ -62,7 +73,10 @@ public class InformationController {
     @RequestMapping(value = "/updateInformation",method = RequestMethod.PUT)
     private JsonResult updateInformation(@RequestBody Information information) {
         int mark = informationService.updateInformation(information);
-        if(mark == 1) return jsonResult.ok();
+        if(mark == 1) {
+            List<Information> list = informationService.findInformationById(information.getId());
+            return jsonResult.ok(list);
+        }
         return jsonResult.errorMessage("操作失败");
     }
 

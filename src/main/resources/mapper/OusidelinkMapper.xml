@@ -8,6 +8,11 @@
         select * from outsidelink where deleteFlag = 0
     </select>
 
+    <!--条件查询：按照id查询-->
+    <select id="findOutsidelinkById" parameterType="int" resultType="Outsidelink">
+        select * from outsidelink where id=#{id} and deleteFlag=0
+    </select>
+
     <!--添加-->
     <insert id="addOutsidelink" parameterType="Outsidelink">
         insert into outsidelink (title,content,link,adminId)
@@ -21,6 +26,7 @@
             <if test="title!=null">title=#{title},</if>
             <if test="content!=null">content=#{content},</if>
             <if test="link!=null">link=#{link},</if>
+            <if test="viewCount!=null">viewCount=#{viewCount},</if>
         </trim>
         where id = #{id} and deleteFlag = 0
     </update>

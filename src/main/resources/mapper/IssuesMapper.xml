@@ -8,6 +8,11 @@
         select * from issues where deleteFlag = 0
     </select>
 
+    <!--条件查询：按照id查询-->
+    <select id="findIssuesById" parameterType="int" resultType="Issues">
+        select * from issues where id=#{id} and deleteFlag=0
+    </select>
+
     <!--条件查询：根据提出者用户id查询-->
     <select id="findIssuesByUserId" parameterType="int" resultType="Issues">
         select * from issues where userId=#{userId} and deleteFlag=0
@@ -23,6 +28,7 @@
         update issues
         <trim prefix="set" suffixOverrides=",">
             <if test="title!=null">title=#{title}</if>
+            <if test="viewCount!=null">viewCount=#{viewCount},</if>
         </trim>
         where id=#{id} and deleteFlag=0
     </update>

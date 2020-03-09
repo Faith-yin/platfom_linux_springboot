@@ -1,5 +1,6 @@
 package com.ypf.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class User {
     private String username; //用户名称
     private String password; //用户密码
     private String sex; //用户性别
+    @JsonFormat(pattern = "yyyy-MM-dd",  timezone="GMT+8")
     private Date birthday; //用户生日
     private String description; //用户描述
     private int deleteFlag; //是否删除

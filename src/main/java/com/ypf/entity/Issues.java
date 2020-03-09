@@ -1,5 +1,6 @@
 package com.ypf.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class Issues {
 
     private int id; //id
     private String title; //题目
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone="GMT+8")
     private Timestamp date; //提出时间
     private int viewCount; //浏览次数
     private int userId; //提出者用户id

@@ -8,6 +8,12 @@
         select * from video where deleteFlag = 0
     </select>
 
+    <!--条件查询：按照id查询-->
+    <select id="findVideoById" parameterType="int" resultType="Video">
+        select * from video where id=#{id} and deleteFlag=0
+    </select>
+
+
     <!--添加-->
     <insert id="addVideo" parameterType="Video">
         insert into video (title,content,link,adminId,date)
@@ -21,6 +27,7 @@
             <if test="title!=null">title=#{title},</if>
             <if test="content!=null">content=#{content},</if>
             <if test="link!=null">link=#{link},</if>
+            <if test="viewCount!=null">viewCount=#{viewCount},</if>
         </trim>
         where id = #{id} and deleteFlag = 0
     </update>

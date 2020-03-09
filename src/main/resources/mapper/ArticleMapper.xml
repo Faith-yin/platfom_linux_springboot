@@ -8,6 +8,11 @@
         select * from article where deleteFlag = 0
     </select>
 
+    <!--条件查询：按照id查询-->
+    <select id="findArticleById" parameterType="int" resultType="Article">
+        select * from article where id=#{id} and deleteFlag=0
+    </select>
+
     <!--添加-->
     <insert id="addArticle" parameterType="Article">
         insert into article (title,content,userId,date)
@@ -20,6 +25,7 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="title!=null">title=#{title},</if>
             <if test="content!=null">content=#{content},</if>
+            <if test="viewCount!=null">viewCount=#{viewCount},</if>
         </trim>
         where id = #{id} and deleteFlag = 0
     </update>

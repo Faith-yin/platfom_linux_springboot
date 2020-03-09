@@ -23,6 +23,13 @@ public class ArticleService implements IArticleService {
         return list;
     }
 
+    //条件查询
+    @Override
+    public List<Article> findArticleById(int id) {
+        List<Article> list = articleMapper.findArticleById(id);
+        return list;
+    }
+
     //添加
     @Override
     public int addArticle(Article article) {

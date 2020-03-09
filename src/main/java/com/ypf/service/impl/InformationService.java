@@ -23,6 +23,13 @@ public class InformationService implements IInformationService {
         return list;
     }
 
+    //条件查询：按照id查询
+    @Override
+    public  List<Information> findInformationById(int id) {
+        List<Information> list = informationMapper.findInformationById(id);
+        return list;
+    }
+
     //条件查询：按照管理员id查询
     @Override
     public List<Information> findInformationByAdminId(int adminId) {

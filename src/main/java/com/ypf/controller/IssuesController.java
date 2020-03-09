@@ -33,6 +33,17 @@ public class IssuesController {
 
 
     /**
+     * 条件查询：根据id查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findIssuesById",method = RequestMethod.GET)
+    private JsonResult findIssuesById(int id) {
+        List<Issues> list = issuesService.findIssuesById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 添加
      */
     @ResponseBody
@@ -51,7 +62,10 @@ public class IssuesController {
     @RequestMapping(value = "/updateIssues",method = RequestMethod.PUT)
     private JsonResult updateIssues(@RequestBody Issues issues) {
         int mark = issuesService.updateIssues(issues);
-        if(mark == 1) return jsonResult.ok();
+        if(mark == 1) {
+            List<Issues> list = issuesService.findIssuesById(issues.getId());
+            return jsonResult.ok(list);
+        }
         return jsonResult.errorMessage("操作失败");
     }
 

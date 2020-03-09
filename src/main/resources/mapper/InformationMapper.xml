@@ -8,6 +8,11 @@
         select * from information where deleteFlag=0
     </select>
 
+    <!--条件查询：按照id查询-->
+    <select id="findInformationById" parameterType="int" resultType="Information">
+        select * from information where id=#{id} and deleteFlag=0
+    </select>
+
     <!--条件查询：按照管理员id查询-->
     <select id="findInformationByAdminId" parameterType="int" resultType="Information">
         select * from information where adminId=#{adminId} and deleteFlag=0
@@ -25,6 +30,7 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="title!=null">title=#{title},</if>
             <if test="content!=null">content=#{content},</if>
+            <if test="viewCount!=null">viewCount=#{viewCount},</if>
         </trim>
         where id = #{id} and deleteFlag = 0
     </update>

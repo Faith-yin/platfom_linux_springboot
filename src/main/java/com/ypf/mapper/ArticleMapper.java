@@ -12,6 +12,9 @@ public interface ArticleMapper {
     //查询全部
     List<Article> showAllArticle();
 
+    //条件查询：按照id查询
+    List<Article> findArticleById(int id);
+
     //添加
     int addArticle(Article article);
 

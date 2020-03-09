@@ -1,5 +1,6 @@
 package com.ypf.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Article {
     private String title; //题目
     private String content; //内容
     private int userId; //作者用户id
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",  timezone="GMT+8")
     private Timestamp date; //上传时间
     private int viewCount; //浏览次数
     private int deleteFlag; //是否删除

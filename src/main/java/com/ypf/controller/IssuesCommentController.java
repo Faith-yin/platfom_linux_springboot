@@ -6,10 +6,7 @@ import com.ypf.service.impl.IssuesService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,8 +34,8 @@ public class IssuesCommentController {
      * 条件查询：根据归属问题issueId查询
      */
     @ResponseBody
-    @RequestMapping(value = "/findIssuesCommentByIssuesId",method = RequestMethod.POST)
-    private JsonResult findIssuesCommentByIssuesId(int issueId) {
+    @RequestMapping(value = "/findIssuesCommentByIssuesId/{issueId}",method = RequestMethod.POST)
+    private JsonResult findIssuesCommentByIssuesId(@PathVariable("issueId") int issueId) {
         List<IssuesComment> list = issuesCommentService.findIssuesCommentByIssuesId(issueId);
         return jsonResult.ok(list);
     }
