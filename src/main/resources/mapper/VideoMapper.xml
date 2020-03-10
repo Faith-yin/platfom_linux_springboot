@@ -5,21 +5,21 @@
 
     <!--查询全部-->
     <select id="showAllVideo" resultType="map">
-        select video.*,admin.username from video,admin
-        where video.adminId=admin.id and video.deleteFlag = 0
+        select video.*,user.username from video,user
+        where video.userId=user.id and video.deleteFlag = 0 and video.checkStatus = 1
     </select>
 
     <!--条件查询：按照id查询-->
     <select id="findVideoById" parameterType="int" resultType="map">
-        select video.*,admin.username from video,admin
-        where video.adminId=admin.id and video.id=#{id} and video.deleteFlag = 0
+        select video.*,user.username from video,user
+        where video.userId=user.id and video.id=#{id} and video.deleteFlag = 0 and video.checkStatus = 1
     </select>
 
 
     <!--添加-->
     <insert id="addVideo" parameterType="Video">
-        insert into video (title,content,link,adminId,date)
-        values (#{title},#{content},#{link},#{adminId},#{date})
+        insert into video (title,content,link,userId,date,checkStatus)
+        values (#{title},#{content},#{link},#{userId},#{date},#{checkStatus})
     </insert>
 
     <!--修改-->
