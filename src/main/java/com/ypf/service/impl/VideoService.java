@@ -19,15 +19,15 @@ public class VideoService implements IVideoService {
 
     //查询全部
     @Override
-    public List<Video> showAllVideo() {
-        List<Video> list = videoMapper.showAllVideo();
+    public List<Object> showAllVideo() {
+        List<Object> list = videoMapper.showAllVideo();
         return list;
     }
 
     //条件查询：按照id查询
     @Override
-    public List<Video> findVideoById(int id) {
-        List<Video> list = videoMapper.findVideoById(id);
+    public List<Object> findVideoById(int id) {
+        List<Object> list = videoMapper.findVideoById(id);
         return list;
     }
 

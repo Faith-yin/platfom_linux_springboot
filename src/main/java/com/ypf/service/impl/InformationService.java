@@ -18,15 +18,15 @@ public class InformationService implements IInformationService {
 
     //查询全部
     @Override
-    public List<Information> showAllInformation() {
-        List<Information> list = informationMapper.showAllInformation();
+    public List<Object> showAllInformation() {
+        List<Object> list = informationMapper.showAllInformation();
         return list;
     }
 
     //条件查询：按照id查询
     @Override
-    public  List<Information> findInformationById(int id) {
-        List<Information> list = informationMapper.findInformationById(id);
+    public  List<Object> findInformationById(int id) {
+        List<Object> list = informationMapper.findInformationById(id);
         return list;
     }
 

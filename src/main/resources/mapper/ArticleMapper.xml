@@ -4,13 +4,15 @@
 <mapper namespace="com.ypf.mapper.ArticleMapper">
 
     <!--查询全部-->
-    <select id="showAllArticle" resultType="Article">
-        select * from article where deleteFlag = 0
+    <select id="showAllArticle" resultType="map">
+        select article.*,user.username from article,user
+        where article.userId=user.id and article.deleteFlag = 0 and user.deleteFlag=0
     </select>
 
     <!--条件查询：按照id查询-->
-    <select id="findArticleById" parameterType="int" resultType="Article">
-        select * from article where id=#{id} and deleteFlag=0
+    <select id="findArticleById" parameterType="int" resultType="map">
+        select article.*,user.username from article,user
+        where article.userId=user.id and article.id=#{id} and article.deleteFlag=0 and user.deleteFlag=0
     </select>
 
     <!--添加-->

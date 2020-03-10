@@ -18,15 +18,15 @@ public class ArticleService implements IArticleService {
 
     //查询全部
     @Override
-    public List<Article> showAllArticle() {
-        List<Article> list = articleMapper.showAllArticle();
+    public List<Object> showAllArticle() {
+        List<Object> list = articleMapper.showAllArticle();
         return list;
     }
 
-    //条件查询
+    //条件查询：根据id查询
     @Override
-    public List<Article> findArticleById(int id) {
-        List<Article> list = articleMapper.findArticleById(id);
+    public List<Object> findArticleById(int id) {
+        List<Object> list = articleMapper.findArticleById(id);
         return list;
     }
 

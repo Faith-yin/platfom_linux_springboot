@@ -27,7 +27,7 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/showAllArticle",method = RequestMethod.GET)
     private JsonResult showAllArticle() {
-        List<Article> list = articleService.showAllArticle();
+        List<Object> list = articleService.showAllArticle();
         return jsonResult.ok(list);
     }
 
@@ -38,7 +38,7 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/findArticleById",method = RequestMethod.GET)
     private JsonResult findArticleById(int id) {
-        List<Article> list = articleService.findArticleById(id);
+        List<Object> list = articleService.findArticleById(id);
         return jsonResult.ok(list);
     }
 
@@ -63,7 +63,7 @@ public class ArticleController {
     private JsonResult updateArticle(@RequestBody Article article) {
         int mark = articleService.updateArticle(article);
         if(mark == 1) {
-            List<Article> list = articleService.findArticleById(article.getId());
+            List<Object> list = articleService.findArticleById(article.getId());
             return jsonResult.ok(list);
         }
         return jsonResult.errorMessage("操作失败");

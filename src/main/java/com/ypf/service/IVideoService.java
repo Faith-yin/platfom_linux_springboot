@@ -7,10 +7,10 @@ import java.util.List;
 public interface IVideoService {
 
     //查询全部
-    List<Video> showAllVideo();
+    List<Object> showAllVideo();
 
     //条件查询：按照id查询
-    List<Video> findVideoById(int id);
+    List<Object> findVideoById(int id);
 
     //添加
     int addVideo(Video video);

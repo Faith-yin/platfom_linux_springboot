@@ -18,15 +18,15 @@ public class IssuesService implements IIssuesService {
 
     //查询全部
     @Override
-    public List<Issues> showAllIssues() {
-        List<Issues> list = issuesMapper.showAllIssues();
+    public List<Object> showAllIssues() {
+        List<Object> list = issuesMapper.showAllIssues();
         return list;
     }
 
     //条件查询：根据id查询
     @Override
-    public List<Issues> findIssuesById(int id) {
-        List<Issues> list = issuesMapper.findIssuesById(id);
+    public List<Object> findIssuesById(int id) {
+        List<Object> list = issuesMapper.findIssuesById(id);
         return list;
     }
 

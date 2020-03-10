@@ -11,6 +11,9 @@ public interface AdminMapper {
     //查询全部
     List<Admin> showAllAdmin();
 
+    //条件查询：根据id查询
+    List<Admin> findAdminById(int id);
+
     //条件查询：根据名称查询
     List<Admin> findAdminByName(String username);
 

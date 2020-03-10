@@ -25,7 +25,7 @@ public class IssuesCommentController {
     @ResponseBody
     @RequestMapping(value = "/showAllIssuesComment",method = RequestMethod.GET)
     private JsonResult showAllIssuesComment() {
-        List<IssuesComment> list = issuesCommentService.showAllIssuesComment();
+        List<Object> list = issuesCommentService.showAllIssuesComment();
         return jsonResult.ok(list);
     }
 
@@ -36,7 +36,7 @@ public class IssuesCommentController {
     @ResponseBody
     @RequestMapping(value = "/findIssuesCommentByIssuesId/{issueId}",method = RequestMethod.POST)
     private JsonResult findIssuesCommentByIssuesId(@PathVariable("issueId") int issueId) {
-        List<IssuesComment> list = issuesCommentService.findIssuesCommentByIssuesId(issueId);
+        List<Object> list = issuesCommentService.findIssuesCommentByIssuesId(issueId);
         return jsonResult.ok(list);
     }
 

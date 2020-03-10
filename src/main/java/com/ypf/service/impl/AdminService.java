@@ -23,6 +23,13 @@ public class AdminService implements IAdminService {
         return list;
     }
 
+    //条件查询：根据id查询
+    @Override
+    public List<Admin> findAdminById(int id) {
+        List<Admin> list = adminMapper.findAdminById(id);
+        return list;
+    }
+
     //条件查询：根据名称查询
     @Override
     public List<Admin> findAdminByName(String username) {

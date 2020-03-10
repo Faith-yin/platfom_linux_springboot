@@ -27,7 +27,7 @@ public class IssuesController {
     @ResponseBody
     @RequestMapping(value = "/showAllIssues",method = RequestMethod.GET)
     private JsonResult showAllIssues() {
-        List<Issues> list = issuesService.showAllIssues();
+        List<Object> list = issuesService.showAllIssues();
         return jsonResult.ok(list);
     }
 
@@ -38,7 +38,7 @@ public class IssuesController {
     @ResponseBody
     @RequestMapping(value = "/findIssuesById",method = RequestMethod.GET)
     private JsonResult findIssuesById(int id) {
-        List<Issues> list = issuesService.findIssuesById(id);
+        List<Object> list = issuesService.findIssuesById(id);
         return jsonResult.ok(list);
     }
 
@@ -63,7 +63,7 @@ public class IssuesController {
     private JsonResult updateIssues(@RequestBody Issues issues) {
         int mark = issuesService.updateIssues(issues);
         if(mark == 1) {
-            List<Issues> list = issuesService.findIssuesById(issues.getId());
+            List<Object> list = issuesService.findIssuesById(issues.getId());
             return jsonResult.ok(list);
         }
         return jsonResult.errorMessage("操作失败");

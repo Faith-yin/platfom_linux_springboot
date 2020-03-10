@@ -27,7 +27,7 @@ public class OutsidelinkController {
     @ResponseBody
     @RequestMapping(value = "/showAllOutsidelink",method = RequestMethod.GET)
     private JsonResult showAllOutsidelink() {
-        List<OutsideLink> list = outsidelinkService.showAllOutsidelink();
+        List<Object> list = outsidelinkService.showAllOutsidelink();
         return jsonResult.ok(list);
     }
 
@@ -38,7 +38,7 @@ public class OutsidelinkController {
     @ResponseBody
     @RequestMapping(value = "/findOutsidelinkById",method = RequestMethod.GET)
     private JsonResult findOutsidelinkById(int id) {
-        List<OutsideLink> list = outsidelinkService.findOutsidelinkById(id);
+        List<Object> list = outsidelinkService.findOutsidelinkById(id);
         return jsonResult.ok(list);
     }
 
@@ -63,7 +63,7 @@ public class OutsidelinkController {
     private JsonResult updateOutsidelink(@RequestBody OutsideLink outsideLink) {
         int mark = outsidelinkService.updateOutsidelink(outsideLink);
         if(mark == 1) {
-            List<OutsideLink> list = outsidelinkService.findOutsidelinkById(outsideLink.getId());
+            List<Object> list = outsidelinkService.findOutsidelinkById(outsideLink.getId());
             return jsonResult.ok(list);
         }
         return jsonResult.errorMessage("操作失败");

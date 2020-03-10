@@ -4,13 +4,15 @@
 <mapper namespace="com.ypf.mapper.OutsidelinkMapper">
 
     <!--查询全部-->
-    <select id="showAllOutsidelink" resultType="Outsidelink">
-        select * from outsidelink where deleteFlag = 0
+    <select id="showAllOutsidelink" resultType="map">
+        select outsidelink.*,admin.username from outsidelink,admin
+        where outsidelink.adminId=admin.id and outsidelink.deleteFlag = 0
     </select>
 
     <!--条件查询：按照id查询-->
-    <select id="findOutsidelinkById" parameterType="int" resultType="Outsidelink">
-        select * from outsidelink where id=#{id} and deleteFlag=0
+    <select id="findOutsidelinkById" parameterType="int" resultType="map">
+        select outsidelink.*,admin.username from outsidelink,admin
+        where outsidelink.adminId=admin.id and outsidelink.id=#{id} and  outsidelink.deleteFlag = 0
     </select>
 
     <!--添加-->

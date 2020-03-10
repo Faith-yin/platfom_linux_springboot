@@ -18,15 +18,15 @@ public class IssuesCommentService implements IIssuesCommentService {
 
     //查询全部
     @Override
-    public List<IssuesComment> showAllIssuesComment() {
-        List<IssuesComment> list = issuesCommentMapper.showAllIssuesComment();
+    public List<Object> showAllIssuesComment() {
+        List<Object> list = issuesCommentMapper.showAllIssuesComment();
         return list;
     }
 
     //条件查询：根据归属问题issueId查询
     @Override
-    public List<IssuesComment> findIssuesCommentByIssuesId(int issueId) {
-        List<IssuesComment> list = issuesCommentMapper.findIssuesCommentByIssuesId(issueId);
+    public List<Object> findIssuesCommentByIssuesId(int issueId) {
+        List<Object> list = issuesCommentMapper.findIssuesCommentByIssuesId(issueId);
         return list;
     }
 

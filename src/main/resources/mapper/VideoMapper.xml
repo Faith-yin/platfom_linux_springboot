@@ -4,13 +4,15 @@
 <mapper namespace="com.ypf.mapper.VideoMapper">
 
     <!--查询全部-->
-    <select id="showAllVideo" resultType="Video">
-        select * from video where deleteFlag = 0
+    <select id="showAllVideo" resultType="map">
+        select video.*,admin.username from video,admin
+        where video.adminId=admin.id and video.deleteFlag = 0
     </select>
 
     <!--条件查询：按照id查询-->
-    <select id="findVideoById" parameterType="int" resultType="Video">
-        select * from video where id=#{id} and deleteFlag=0
+    <select id="findVideoById" parameterType="int" resultType="map">
+        select video.*,admin.username from video,admin
+        where video.adminId=admin.id and video.id=#{id} and video.deleteFlag = 0
     </select>
 
 

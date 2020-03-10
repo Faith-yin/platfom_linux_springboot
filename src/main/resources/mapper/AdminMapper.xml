@@ -8,6 +8,11 @@
         select * from admin
     </select>
 
+    <!--条件查询-->
+    <select id="findAdminById" parameterType="int" resultType="Admin">
+        select * from admin where id=#{id}
+    </select>
+
     <!--条件查询：根据名称查询-->
     <select id="findAdminByName" parameterType="String" resultType="Admin">
         select * from admin where username=#{username}

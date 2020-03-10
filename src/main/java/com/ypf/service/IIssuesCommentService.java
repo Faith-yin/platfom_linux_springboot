@@ -8,10 +8,10 @@ import java.util.List;
 public interface IIssuesCommentService {
 
     //查询全部
-    List<IssuesComment> showAllIssuesComment();
+    List<Object> showAllIssuesComment();
 
     //条件查询：根据归属问题issueId查询
-    List<IssuesComment> findIssuesCommentByIssuesId(int issueId);
+    List<Object> findIssuesCommentByIssuesId(int issueId);
 
     //添加
     int addIssuesComment(IssuesComment issuesComment);

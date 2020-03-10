@@ -28,7 +28,7 @@ public class VideoController {
     @ResponseBody
     @RequestMapping(value = "/showAllVideo",method = RequestMethod.GET)
     private JsonResult showAllVideo() {
-        List<Video> list = videoService.showAllVideo();
+        List<Object> list = videoService.showAllVideo();
         return jsonResult.ok(list);
     }
 
@@ -39,7 +39,7 @@ public class VideoController {
     @ResponseBody
     @RequestMapping(value = "/findVideoById",method = RequestMethod.GET)
     private JsonResult findVideoById(int id) {
-        List<Video> list = videoService.findVideoById(id);
+        List<Object> list = videoService.findVideoById(id);
         return jsonResult.ok(list);
     }
 
@@ -64,7 +64,7 @@ public class VideoController {
     private JsonResult updateVideo(@RequestBody Video video) {
         int mark = videoService.updateVideo(video);
         if(mark == 1) {
-            List<Video> list = videoService.findVideoById(video.getId());
+            List<Object> list = videoService.findVideoById(video.getId());
             return jsonResult.ok(list);
         }
         return jsonResult.errorMessage("操作失败");

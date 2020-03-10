@@ -1,6 +1,8 @@
 package com.ypf.controller;
 
+import com.ypf.entity.Admin;
 import com.ypf.entity.Information;
+import com.ypf.service.impl.AdminService;
 import com.ypf.service.impl.InformationService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class InformationController {
 
     @Autowired
     private InformationService informationService;
+    @Autowired
+    private AdminService adminService;
     private JsonResult jsonResult;
 
 
@@ -27,7 +31,7 @@ public class InformationController {
     @ResponseBody
     @RequestMapping(value = "/showAllInformation",method = RequestMethod.GET)
     private JsonResult showAllInformation() {
-        List<Information> list = informationService.showAllInformation();
+        List<Object> list = informationService.showAllInformation();
         return jsonResult.ok(list);
     }
 
@@ -38,7 +42,7 @@ public class InformationController {
     @ResponseBody
     @RequestMapping(value = "/findInformationById",method = RequestMethod.GET)
     private JsonResult findInformationById(int id) {
-        List<Information> list = informationService.findInformationById(id);
+        List<Object> list = informationService.findInformationById(id);
         return jsonResult.ok(list);
     }
 
@@ -74,7 +78,7 @@ public class InformationController {
     private JsonResult updateInformation(@RequestBody Information information) {
         int mark = informationService.updateInformation(information);
         if(mark == 1) {
-            List<Information> list = informationService.findInformationById(information.getId());
+            List<Object> list = informationService.findInformationById(information.getId());
             return jsonResult.ok(list);
         }
         return jsonResult.errorMessage("操作失败");

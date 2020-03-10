@@ -19,15 +19,15 @@ public class OutsidelinkService implements IOutsidelinkService {
 
     //查询全部
     @Override
-    public List<OutsideLink> showAllOutsidelink() {
-        List<OutsideLink> list = outsidelinkMapper.showAllOutsidelink();
+    public List<Object> showAllOutsidelink() {
+        List<Object> list = outsidelinkMapper.showAllOutsidelink();
         return list;
     }
 
     //条件查询：按照id查询
     @Override
-    public List<OutsideLink> findOutsidelinkById(int id) {
-        List<OutsideLink> list = outsidelinkMapper.findOutsidelinkById(id);
+    public List<Object> findOutsidelinkById(int id) {
+        List<Object> list = outsidelinkMapper.findOutsidelinkById(id);
         return list;
     }
 

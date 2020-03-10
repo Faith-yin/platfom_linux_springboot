@@ -7,10 +7,10 @@ import java.util.List;
 public interface IInformationService {
 
     //查询全部
-    List<Information> showAllInformation();
+    List<Object> showAllInformation();
 
     //条件查询：按照id查询
-    List<Information> findInformationById(int id);
+    List<Object> findInformationById(int id);
 
     //条件查询：按照管理员id查询
     List<Information> findInformationByAdminId(int adminId);

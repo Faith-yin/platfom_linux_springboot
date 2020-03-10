@@ -10,10 +10,10 @@ import java.util.List;
 public interface ArticleMapper {
 
     //查询全部
-    List<Article> showAllArticle();
+    List<Object> showAllArticle();
 
     //条件查询：按照id查询
-    List<Article> findArticleById(int id);
+    List<Object> findArticleById(int id);
 
     //添加
     int addArticle(Article article);

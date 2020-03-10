@@ -4,15 +4,16 @@ import com.ypf.entity.Information;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface InformationMapper {
 
     //查询全部
-    List<Information> showAllInformation();
+    List<Object> showAllInformation();
 
     //条件查询：按照id查询
-    List<Information> findInformationById(int id);
+    List<Object> findInformationById(int id);
 
     //条件查询：按照管理员id查询
     List<Information> findInformationByAdminId(int adminId);
