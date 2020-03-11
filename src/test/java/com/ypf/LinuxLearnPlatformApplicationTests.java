@@ -21,7 +21,7 @@ class LinuxLearnPlatformApplicationTests {
 
     @Test
     public void contextLoads() throws IOException, MyException {
-        ClientGlobal.init("C:\\Users\\A400U\\Desktop\\毕业设计资料\\linux_learn_platform\\src/main\\resources\\client.cfg");
+        ClientGlobal.init("C:\\Users\\A400U\\Desktop\\GraduationProject\\linux_learn_platform\\src/main\\resources\\client.cfg");
 //		3、创建一个TrackerClient对象。
         TrackerClient client = new TrackerClient();
 //		4、创建一个TrackerServer对象。
@@ -39,7 +39,7 @@ class LinuxLearnPlatformApplicationTests {
 
     @Test
     public void testClientUtil() {
-        FastDFSClient client = new FastDFSClient("C:\\Users\\A400U\\Desktop\\毕业设计资料\\linux_learn_platform\\src/main\\resources\\client.cfg");
+        FastDFSClient client = new FastDFSClient("C:\\Users\\A400U\\Desktop\\GraduationProject\\linux_learn_platform\\src/main\\resources\\client.cfg");
         String result = client.uploadFile("C:\\Users\\A400U\\Desktop\\HTML5\\图片视频音频\\video\\video_04.mp4", "mp4");
         System.out.println("路径是-->"+result);
     }

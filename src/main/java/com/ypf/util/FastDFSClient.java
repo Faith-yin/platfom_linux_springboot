@@ -25,6 +25,8 @@ public class FastDFSClient {
             e.printStackTrace();
         }
     }
+
+
     public String uploadFile(String fileName, String extName, NameValuePair[] metas) {
         try {
             return storageClient.upload_file1(fileName, extName, metas);
@@ -35,9 +37,13 @@ public class FastDFSClient {
         }
         return null;
     }
+
+
     public String uploadFile(String fileName,String extName) {
         return this.uploadFile(fileName, extName, null);
     }
+
+
     public String uploadFile(byte[] content,String extName,NameValuePair[] metas) {
         try {
             return storageClient.upload_file1(content, extName, metas);
@@ -48,6 +54,8 @@ public class FastDFSClient {
         }
         return null;
     }
+
+
     public String uploadFile(byte[] content,String extName) {
         return this.uploadFile(content, extName, null);
     }
