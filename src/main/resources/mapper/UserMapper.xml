@@ -32,6 +32,7 @@
             <if test="sex!=null">sex=#{sex},</if>
             <if test="birthday!=null">birthday=#{birthday},</if>
             <if test="description!=null">description=#{description},</if>
+            <if test="photo!=null">photo=#{photo},</if>
         </trim>
         where id = #{id} and deleteFlag = 0
     </update>

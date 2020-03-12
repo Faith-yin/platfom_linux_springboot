@@ -23,5 +23,6 @@ public class User {
     private Date birthday; //用户生日
     private String description; //用户描述
     private int deleteFlag; //是否删除
+    private String photo; //用户头像
 
 }

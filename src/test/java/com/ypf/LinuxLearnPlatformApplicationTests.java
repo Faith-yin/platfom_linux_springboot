@@ -40,7 +40,7 @@ class LinuxLearnPlatformApplicationTests {
     @Test
     public void testClientUtil() {
         FastDFSClient client = new FastDFSClient("C:\\Users\\A400U\\Desktop\\GraduationProject\\linux_learn_platform\\src/main\\resources\\client.cfg");
-        String result = client.uploadFile("C:\\Users\\A400U\\Desktop\\HTML5\\图片视频音频\\video\\video_04.mp4", "mp4");
+        String result = client.uploadFile("C:\\Users\\A400U\\Desktop\\HTML5\\图片视频音频\\images\\default-photo.png", "png");
         System.out.println("路径是-->"+result);
     }
 

@@ -26,5 +26,17 @@ public class UploadFileController {
     }
 
 
+    /**
+     * 图片上传服务器接口
+     */
+    @ResponseBody
+    @RequestMapping(value = "/uploadImg",method = RequestMethod.POST)
+    private JsonResult uploadImg(@RequestParam("file")MultipartFile file) throws Exception {
+        String str = uploadFileService.imgUpload(file);
+        return jsonResult.ok(str);
+    }
+
+
+
 
 }

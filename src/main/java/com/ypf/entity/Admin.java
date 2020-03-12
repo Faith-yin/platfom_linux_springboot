@@ -15,5 +15,6 @@ public class Admin {
     private int id; //id
     private String username; //名称
     private String password; //密码
+    private String photo; //头像
 
 }

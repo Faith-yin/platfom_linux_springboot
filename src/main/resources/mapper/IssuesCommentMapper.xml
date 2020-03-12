@@ -11,7 +11,7 @@
 
     <!--条件查询：根据归属问题issueId查询-->
     <select id="findIssuesCommentByIssuesId" parameterType="int" resultType="map">
-        select issuescomment.*,user.username from issuescomment,user
+        select issuescomment.*,user.username,user.photo from issuescomment,user
         where issuescomment.userId=user.id and issuescomment.issueId=#{issueId} and issuescomment.deleteFlag = 0 and user.deleteFlag = 0
     </select>
 
