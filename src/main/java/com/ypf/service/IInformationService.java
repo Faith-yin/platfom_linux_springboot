@@ -3,6 +3,7 @@ package com.ypf.service;
 import com.ypf.entity.Information;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IInformationService {
 
@@ -14,6 +15,9 @@ public interface IInformationService {
 
     //条件查询：按照管理员id查询
     List<Information> findInformationByAdminId(int adminId);
+
+    //模糊查询
+    List<Object> fuzzyFindInformation(Map<String,Object> params);
 
     //添加
     int addInformation(Information information);

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -34,6 +35,13 @@ public class InformationService implements IInformationService {
     @Override
     public List<Information> findInformationByAdminId(int adminId) {
         List<Information> list = informationMapper.findInformationByAdminId(adminId);
+        return list;
+    }
+
+    //模糊查询
+    @Override
+    public List<Object> fuzzyFindInformation(Map<String,Object> params) {
+        List<Object> list = informationMapper.fuzzyFindInformation(params);
         return list;
     }
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/information")
@@ -29,10 +30,17 @@ public class InformationController {
      * 查询全部
      */
     @ResponseBody
-    @RequestMapping(value = "/showAllInformation",method = RequestMethod.GET)
-    private JsonResult showAllInformation() {
-        List<Object> list = informationService.showAllInformation();
-        return jsonResult.ok(list);
+    @RequestMapping(value = "/showAllInformation",method = RequestMethod.POST)
+    private JsonResult showAllInformation(@RequestBody Map<String,Object> params) {
+        System.out.println("入参是-->"+params.get("value"));
+        if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+            List<Object> list = informationService.showAllInformation();
+            return jsonResult.ok(list);
+        } else { //如果有入参，就模糊查询
+            List<Object> list1 = informationService.fuzzyFindInformation(params);
+            return jsonResult.ok(list1);
+        }
+
     }
 
 
