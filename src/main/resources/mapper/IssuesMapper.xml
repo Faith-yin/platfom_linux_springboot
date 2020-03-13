@@ -6,13 +6,13 @@
     <!--查询全部-->
     <select id="showAllIssues" resultType="map">
         select issues.*,user.username from issues,user
-        where issues.userId=user.id and issues.deleteFlag = 0 and user.deleteFlag = 0
+        where issues.userId=user.id and issues.deleteFlag = 0
     </select>
 
     <!--条件查询：按照id查询-->
     <select id="findIssuesById" parameterType="int" resultType="map">
         select issues.*,user.username from issues,user
-        where issues.userId=user.id and issues.id=#{id} and issues.deleteFlag=0 and user.deleteFlag=0
+        where issues.userId=user.id and issues.id=#{id} and issues.deleteFlag=0
     </select>
 
     <!--条件查询：根据提出者用户id查询-->
@@ -26,7 +26,6 @@
         where issues.title LIKE '%${value}%'
               and issues.userId=user.id
               and issues.deleteFlag=0
-              and user.deleteFlag=0
     </select>
 
     <!--添加-->
