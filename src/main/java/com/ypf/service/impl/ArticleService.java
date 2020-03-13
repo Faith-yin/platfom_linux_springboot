@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -27,6 +28,13 @@ public class ArticleService implements IArticleService {
     @Override
     public List<Object> findArticleById(int id) {
         List<Object> list = articleMapper.findArticleById(id);
+        return list;
+    }
+
+    //模糊查询
+    @Override
+    public List<Object> fuzzyFindArticle(Map<String,Object> params) {
+        List<Object> list = articleMapper.fuzzyFindArticle(params);
         return list;
     }
 

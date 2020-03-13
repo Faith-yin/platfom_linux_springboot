@@ -3,6 +3,7 @@ package com.ypf.service;
 import com.ypf.entity.OutsideLink;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IOutsidelinkService {
 
@@ -11,6 +12,9 @@ public interface IOutsidelinkService {
 
     //条件查询：按照id查询
     List<Object> findOutsidelinkById(int id);
+
+    //模糊查询
+    List<Object> fuzzyFindOutsidelink(Map<String,Object> params);
 
     //添加
     int addOutsidelink(OutsideLink outsideLink);

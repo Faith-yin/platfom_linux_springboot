@@ -32,7 +32,6 @@ public class InformationController {
     @ResponseBody
     @RequestMapping(value = "/showAllInformation",method = RequestMethod.POST)
     private JsonResult showAllInformation(@RequestBody Map<String,Object> params) {
-        System.out.println("入参是-->"+params.get("value"));
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<Object> list = informationService.showAllInformation();
             return jsonResult.ok(list);
@@ -40,7 +39,6 @@ public class InformationController {
             List<Object> list1 = informationService.fuzzyFindInformation(params);
             return jsonResult.ok(list1);
         }
-
     }
 
 

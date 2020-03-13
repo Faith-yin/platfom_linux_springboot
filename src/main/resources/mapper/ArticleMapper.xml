@@ -15,6 +15,16 @@
         where article.userId=user.id and article.id=#{id} and article.deleteFlag=0 and article.checkStatus=1 and user.deleteFlag=0
     </select>
 
+    <!--模糊查询-->
+    <select id="fuzzyFindArticle" parameterType="map" resultType="map">
+        select article.*,user.username from article,user
+        where (article.title LIKE '%${value}%' OR article.content LIKE '%${value}%')
+              and article.userId=user.id
+              and article.deleteFlag=0
+              and article.checkStatus=1
+              and user.deleteFlag=0
+    </select>
+
     <!--添加-->
     <insert id="addArticle" parameterType="Article">
         insert into article (title,content,userId,date,checkStatus)

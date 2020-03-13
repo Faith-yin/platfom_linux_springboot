@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -28,6 +29,13 @@ public class OutsidelinkService implements IOutsidelinkService {
     @Override
     public List<Object> findOutsidelinkById(int id) {
         List<Object> list = outsidelinkMapper.findOutsidelinkById(id);
+        return list;
+    }
+
+    //模糊查询
+    @Override
+    public List<Object> fuzzyFindOutsidelink(Map<String,Object> params) {
+        List<Object> list = outsidelinkMapper.fuzzyFindOutsidelink(params);
         return list;
     }
 

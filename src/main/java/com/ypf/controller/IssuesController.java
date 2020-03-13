@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/issues")
@@ -25,10 +26,16 @@ public class IssuesController {
      * 查询全部
      */
     @ResponseBody
-    @RequestMapping(value = "/showAllIssues",method = RequestMethod.GET)
-    private JsonResult showAllIssues() {
-        List<Object> list = issuesService.showAllIssues();
-        return jsonResult.ok(list);
+    @RequestMapping(value = "/showAllIssues",method = RequestMethod.POST)
+    private JsonResult showAllIssues(@RequestBody Map<String,Object> params) {
+
+        if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+            List<Object> list = issuesService.showAllIssues();
+            return jsonResult.ok(list);
+        } else { //如果有入参，就模糊查询
+            List<Object> list1 = issuesService.fuzzyFindIssues(params);
+            return jsonResult.ok(list1);
+        }
     }
 
 

@@ -4,6 +4,7 @@ import com.ypf.entity.OutsideLink;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface OutsidelinkMapper {
@@ -13,6 +14,9 @@ public interface OutsidelinkMapper {
 
     //条件查询：按照id查询
     List<Object> findOutsidelinkById(int id);
+
+    //模糊查询
+    List<Object> fuzzyFindOutsidelink(Map<String,Object> params);
 
     //添加
     int addOutsidelink(OutsideLink outsideLink);

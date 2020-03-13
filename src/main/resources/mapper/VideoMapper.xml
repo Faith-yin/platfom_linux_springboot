@@ -6,13 +6,23 @@
     <!--查询全部-->
     <select id="showAllVideo" resultType="map">
         select video.*,user.username from video,user
-        where video.userId=user.id and video.deleteFlag = 0 and video.checkStatus = 1
+        where video.userId=user.id and video.deleteFlag = 0 and video.checkStatus = 1 and user.deleteFlag=0
     </select>
 
     <!--条件查询：按照id查询-->
     <select id="findVideoById" parameterType="int" resultType="map">
         select video.*,user.username from video,user
-        where video.userId=user.id and video.id=#{id} and video.deleteFlag = 0 and video.checkStatus = 1
+        where video.userId=user.id and video.id=#{id} and video.deleteFlag = 0 and video.checkStatus = 1 and user.deleteFlag=0
+    </select>
+
+    <!--模糊查询-->
+    <select id="fuzzyFindVideo" parameterType="map" resultType="map">
+        select video.*,user.username from video,user
+        where (video.title LIKE '%${value}%' OR video.content LIKE '%${value}%')
+              and video.userId=user.id
+              and video.deleteFlag = 0
+              and video.checkStatus = 1
+              and user.deleteFlag = 0
     </select>
 
 

@@ -3,6 +3,7 @@ package com.ypf.service;
 import com.ypf.entity.Issues;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IIssuesService {
 
@@ -14,6 +15,9 @@ public interface IIssuesService {
 
     //条件查询：根据提出者用户id查询
     List<Issues> findIssuesByUserId(int id);
+
+    //模糊查询
+    List<Object> fuzzyFindIssues(Map<String,Object> params);
 
     //添加
     int addIssues(Issues issues);

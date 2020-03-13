@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -28,6 +29,13 @@ public class VideoService implements IVideoService {
     @Override
     public List<Object> findVideoById(int id) {
         List<Object> list = videoMapper.findVideoById(id);
+        return list;
+    }
+
+    //模糊查询
+    @Override
+    public List<Object> fuzzyFindVideo(Map<String,Object> params) {
+        List<Object> list = videoMapper.fuzzyFindVideo(params);
         return list;
     }
 

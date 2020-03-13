@@ -20,6 +20,15 @@
         select * from issues where userId=#{userId} and deleteFlag=0
     </select>
 
+    <!--模糊查询-->
+    <select id="fuzzyFindIssues" parameterType="map" resultType="map">
+        select issues.*,user.username from issues,user
+        where issues.title LIKE '%${value}%'
+              and issues.userId=user.id
+              and issues.deleteFlag=0
+              and user.deleteFlag=0
+    </select>
+
     <!--添加-->
     <insert id="addIssues" parameterType="Issues">
         insert into issues (title,date,userId) values (#{title},#{date},#{userId})

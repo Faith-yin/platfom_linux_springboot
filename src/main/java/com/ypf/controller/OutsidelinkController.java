@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/outsidelink")
@@ -25,10 +26,15 @@ public class OutsidelinkController {
      * 查询全部
      */
     @ResponseBody
-    @RequestMapping(value = "/showAllOutsidelink",method = RequestMethod.GET)
-    private JsonResult showAllOutsidelink() {
-        List<Object> list = outsidelinkService.showAllOutsidelink();
-        return jsonResult.ok(list);
+    @RequestMapping(value = "/showAllOutsidelink",method = RequestMethod.POST)
+    private JsonResult showAllOutsidelink(@RequestBody Map<String,Object> params) {
+        if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+            List<Object> list = outsidelinkService.showAllOutsidelink();
+            return jsonResult.ok(list);
+        } else { //如果有入参，就模糊查询
+            List<Object> list1 = outsidelinkService.fuzzyFindOutsidelink(params);
+            return jsonResult.ok(list1);
+        }
     }
 
 
