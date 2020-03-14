@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -30,6 +31,13 @@ public class IssuesCommentService implements IIssuesCommentService {
         return list;
     }
 
+    //模糊查询
+    @Override
+    public List<Object> fuzzyFindIssuesComment(Map<String,Object> params) {
+        List<Object> list = issuesCommentMapper.fuzzyFindIssuesComment(params);
+        return list;
+    }
+
     //添加
     @Override
     public int addIssuesComment(IssuesComment issuesComment) {
@@ -37,10 +45,16 @@ public class IssuesCommentService implements IIssuesCommentService {
         return mark;
     }
 
+    //修改
+    public int updateIssuesComment(IssuesComment issuesComment) {
+        int mark = issuesCommentMapper.updateIssuesComment(issuesComment);
+        return mark;
+    }
+
     //删除
     @Override
-    public int deleteIssuesComment(int id) {
-        int mark = issuesCommentMapper.deleteIssuesComment(id);
+    public int deleteIssuesComment(Map<String,Object> params) {
+        int mark = issuesCommentMapper.deleteIssuesComment(params);
         return mark;
     }
 

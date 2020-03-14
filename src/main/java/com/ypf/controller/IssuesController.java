@@ -82,8 +82,8 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteIssuesById",method = RequestMethod.DELETE)
-    private JsonResult deleteIssuesById(int id) {
-        int mark = issuesService.deleteIssuesById(id);
+    private JsonResult deleteIssuesById(@RequestBody Map<String,Object> params) {
+        int mark = issuesService.deleteIssuesById(params);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

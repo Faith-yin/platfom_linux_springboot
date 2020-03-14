@@ -46,7 +46,7 @@
     </update>
 
     <!--删除-->
-    <update id="deleteInformation" parameterType="int">
+    <update id="deleteInformation" parameterType="map">
         update information set deleteFlag=1 where id=#{id} and deleteFlag=0
     </update>
 

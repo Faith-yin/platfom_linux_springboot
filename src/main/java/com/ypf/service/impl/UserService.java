@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -31,8 +32,16 @@ public class UserService implements IUserService {
     }
 
     //条件查询：根据用户名称 和 用户密码查询
+    @Override
     public List<User> findUserByNameAndPassword(User user) {
         List<User> list = userMapper.findUserByNameAndPassword(user);
+        return list;
+    }
+
+    //模糊查询
+    @Override
+    public List<Object> fuzzyFindUser(Map<String,Object> params) {
+        List<Object> list = userMapper.fuzzyFindUser(params);
         return list;
     }
 
@@ -52,8 +61,8 @@ public class UserService implements IUserService {
 
     //删除
     @Override
-    public int deleteUserById(int id) {
-        int mark = userMapper.deleteUserById(id);
+    public int deleteUserById(Map<String,Object> params) {
+        int mark = userMapper.deleteUserById(params);
         return mark;
     }
 

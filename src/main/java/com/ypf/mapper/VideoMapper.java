@@ -25,6 +25,6 @@ public interface VideoMapper {
     int updateVideo(Video video);
 
     //删除
-    int deleteVideo(int id);
+    int deleteVideo(Map<String,Object> params);
 
 }

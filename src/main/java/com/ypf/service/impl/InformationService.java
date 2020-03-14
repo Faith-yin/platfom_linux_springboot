@@ -61,8 +61,8 @@ public class InformationService implements IInformationService {
 
     //删除
     @Override
-    public int deleteInformation(int id) {
-        int mark = informationMapper.deleteInformation(id);
+    public int deleteInformation(Map<String,Object> params) {
+        int mark = informationMapper.deleteInformation(params);
         return mark;
     }
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -26,10 +27,15 @@ public class UserController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/showAllUser",method = RequestMethod.GET)
-    private JsonResult showAllUser() {
-        List<User> list = userService.showAllUser();
-        return jsonResult.ok(list);
+    @RequestMapping(value = "/showAllUser",method = RequestMethod.POST)
+    private JsonResult showAllUser(@RequestBody Map<String,Object> params) {
+        if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+            List<User> list = userService.showAllUser();
+            return jsonResult.ok(list);
+        } else { //如果有入参，就模糊查询
+            List<Object> list1 = userService.fuzzyFindUser(params);
+            return jsonResult.ok(list1);
+        }
     }
 
 
@@ -86,14 +92,13 @@ public class UserController {
 
     /**
      * 删除
-     * @param id
+     * @param params
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/deleteUserById",method = RequestMethod.DELETE)
-    private JsonResult deleteUserById(int id) {
-        System.out.println("参数-->"+id);
-        int mark = userService.deleteUserById(id);
+    private JsonResult deleteUserById(@RequestBody Map<String,Object> params) {
+        int mark = userService.deleteUserById(params);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

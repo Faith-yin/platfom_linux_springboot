@@ -23,6 +23,6 @@ public interface IOutsidelinkService {
     int updateOutsidelink(OutsideLink outsideLink);
 
     //删除
-    int deleteOutsidelink(int id);
+    int deleteOutsidelink(Map<String,Object> params);
 
 }

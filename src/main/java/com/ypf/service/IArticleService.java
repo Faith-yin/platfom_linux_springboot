@@ -23,6 +23,6 @@ public interface IArticleService {
     int updateArticle(Article article);
 
     //删除
-    int deleteArticle(int id);
+    int deleteArticle(Map<String,Object> params);
 
 }

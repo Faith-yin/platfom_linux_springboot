@@ -96,8 +96,8 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteInformation",method = RequestMethod.DELETE)
-    private JsonResult deleteInformation(int id) {
-        int mark = informationService.deleteInformation(id);
+    private JsonResult deleteInformation(@RequestBody Map<String,Object> params) {
+        int mark = informationService.deleteInformation(params);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

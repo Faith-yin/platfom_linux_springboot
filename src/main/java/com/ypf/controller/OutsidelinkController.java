@@ -81,8 +81,8 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteOutsidelink",method = RequestMethod.DELETE)
-    private JsonResult deleteOutsidelink(int id) {
-        int mark = outsidelinkService.deleteOutsidelink(id);
+    private JsonResult deleteOutsidelink(@RequestBody Map<String,Object> params) {
+        int mark = outsidelinkService.deleteOutsidelink(params);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

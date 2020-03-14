@@ -55,8 +55,8 @@ public class OutsidelinkService implements IOutsidelinkService {
 
     //删除
     @Override
-    public int deleteOutsidelink(int id) {
-        int mark = outsidelinkMapper.deleteOutsidelink(id);
+    public int deleteOutsidelink(Map<String,Object> params) {
+        int mark = outsidelinkMapper.deleteOutsidelink(params);
         return mark;
     }
 

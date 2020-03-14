@@ -81,8 +81,8 @@ public class ArticleController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteArticle",method = RequestMethod.DELETE)
-    private JsonResult deleteArticle(int id) {
-        int mark = articleService.deleteArticle(id);
+    private JsonResult deleteArticle(@RequestBody Map<String,Object> params) {
+        int mark = articleService.deleteArticle(params);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

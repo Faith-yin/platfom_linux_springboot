@@ -61,8 +61,8 @@ public class IssuesService implements IIssuesService {
 
     //删除
     @Override
-    public int deleteIssuesById(int id) {
-        int mark = issuesMapper.deleteIssuesById(id);
+    public int deleteIssuesById(Map<String,Object> params) {
+        int mark = issuesMapper.deleteIssuesById(params);
         return mark;
     }
 

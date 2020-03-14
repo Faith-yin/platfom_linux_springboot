@@ -82,8 +82,8 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteVideo",method = RequestMethod.DELETE)
-    private JsonResult deleteVideo(int id) {
-        int mark = videoService.deleteVideo(id);
+    private JsonResult deleteVideo(@RequestBody Map<String,Object> params) {
+        int mark = videoService.deleteVideo(params);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }
