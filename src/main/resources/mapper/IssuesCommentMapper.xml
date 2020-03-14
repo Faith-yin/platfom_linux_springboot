@@ -17,10 +17,11 @@
 
     <!--模糊查询-->
     <select id="fuzzyFindIssuesComment" parameterType="map" resultType="map">
-        select issuescomment.*,user.username from issuescomment,user
-        where issuescomment.content LIKE '%${value}%'
-          and issuescomment.userId=user.id
-          and issuescomment.deleteFlag=0
+        select issuescomment.*,issues.title,user.username from issuescomment,issues,user
+        where (issuescomment.content LIKE '%${value}%' or issues.title like '%${value}%')
+              and issuescomment.issueId=issues.id
+              and issuescomment.userId=user.id
+              and issuescomment.deleteFlag=0
     </select>
 
     <!--添加-->
