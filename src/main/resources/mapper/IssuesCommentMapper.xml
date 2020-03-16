@@ -5,8 +5,10 @@
 
     <!--查询全部-->
     <select id="showAllIssuesComment" resultType="map">
-        select issuescomment.*,user.username from issuescomment,user
-        where issuescomment.userId=user.id and issuescomment.deleteFlag = 0
+        select issuescomment.*,user.username,issues.title from issuescomment,user,issues
+        where issuescomment.userId=user.id
+              and issuescomment.issueId=issues.id
+              and issuescomment.deleteFlag = 0
     </select>
 
     <!--条件查询：根据归属问题issueId查询-->

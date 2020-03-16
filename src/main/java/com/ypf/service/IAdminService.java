@@ -16,6 +16,9 @@ public interface IAdminService {
     //条件查询：根据名称查询
     List<Admin> findAdminByName(String username);
 
+    //条件查询：根据名称 和 密码查询
+    List<Admin> findAdminByNameAndPassword(Admin admin);
+
     //模糊查询
     List<Object> fuzzyFindAdmin(Map<String,Object> value);
 

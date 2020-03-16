@@ -39,6 +39,21 @@ public class AdminController {
 
 
     /**
+     * 条件查询：根据名称 和 密码查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findAdminByNameAndPassword",method = RequestMethod.POST)
+    private JsonResult findAdminByNameAndPassword(@RequestBody Admin admin) {
+        List<Admin> list = adminService.findAdminByNameAndPassword(admin);
+        //检验查询的用户名和密码是否已注册
+        //未注册时：
+        if(list == null || list.isEmpty()) return jsonResult.errorMessage("管理员名称或密码输入错误");
+        //已注册：
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 添加
      * @param admin
      * @return
@@ -61,12 +76,15 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "/updateAdmin",method = RequestMethod.PUT)
     private JsonResult updateAdmin(@RequestBody Admin admin) {
+        //校验要修改的用户名称是否已存在
+        List<Admin> list = adminService.findAdminByName(admin.getUsername());
+        if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
+        //不存在时
         int mark = adminService.updateAdmin(admin);
-        if(mark == 1) {
-            List<Admin> list = adminService.findAdminById(admin.getId());
-            return jsonResult.ok(list);
-        }
+        if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
+
+
     }
 
 

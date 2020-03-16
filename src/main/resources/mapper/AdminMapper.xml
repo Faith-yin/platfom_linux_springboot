@@ -8,7 +8,7 @@
         select * from admin where deleteFlag=0
     </select>
 
-    <!--条件查询-->
+    <!--条件查询：根据id查询-->
     <select id="findAdminById" parameterType="Admin" resultType="Admin">
         select * from admin where id=#{id} and deleteFlag=0
     </select>
@@ -16,6 +16,11 @@
     <!--条件查询：根据名称查询-->
     <select id="findAdminByName" parameterType="Admin" resultType="Admin">
         select * from admin where username=#{username} and deleteFlag=0
+    </select>
+
+    <!--条件查询：根据名称 和 密码查询-->
+    <select id="findAdminByNameAndPassword" parameterType="Admin" resultType="Admin">
+        select * from admin where username=#{username} and password=#{password} and deleteFlag=0
     </select>
 
     <!--模糊查询-->

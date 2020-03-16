@@ -38,6 +38,13 @@ public class AdminService implements IAdminService {
         return list;
     }
 
+    //条件查询：根据名称 和 密码查询
+    @Override
+    public List<Admin> findAdminByNameAndPassword(Admin admin) {
+        List<Admin> list = adminMapper.findAdminByNameAndPassword(admin);
+        return list;
+    }
+
 
     //模糊查询
     @Override
