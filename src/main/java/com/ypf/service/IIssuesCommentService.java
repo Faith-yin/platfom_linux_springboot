@@ -24,6 +24,6 @@ public interface IIssuesCommentService {
     int updateIssuesComment(IssuesComment issuesComment);
 
     //删除
-    int deleteIssuesComment(Map<String,Object> params);
+    int deleteIssuesComment(int id);
 
 }

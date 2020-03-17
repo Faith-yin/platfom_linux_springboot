@@ -26,6 +26,6 @@ public interface IInformationService {
     int updateInformation(Information information);
 
     //删除
-    int deleteInformation(Map<String,Object> params);
+    int deleteInformation(int id);
 
 }

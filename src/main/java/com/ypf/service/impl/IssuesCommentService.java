@@ -53,8 +53,8 @@ public class IssuesCommentService implements IIssuesCommentService {
 
     //删除
     @Override
-    public int deleteIssuesComment(Map<String,Object> params) {
-        int mark = issuesCommentMapper.deleteIssuesComment(params);
+    public int deleteIssuesComment(int id) {
+        int mark = issuesCommentMapper.deleteIssuesComment(id);
         return mark;
     }
 

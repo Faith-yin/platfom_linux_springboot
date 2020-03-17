@@ -5,10 +5,7 @@ import com.ypf.service.impl.AdminService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -92,9 +89,9 @@ public class AdminController {
      * 删除
      */
     @ResponseBody
-    @RequestMapping(value = "/deleteAdmin",method = RequestMethod.DELETE)
-    private JsonResult deleteAdmin(@RequestBody Map<String,Object> params) {
-        int mark = adminService.deleteAdmin(params);
+    @RequestMapping(value = "/deleteAdmin/{id}",method = RequestMethod.DELETE)
+    private JsonResult deleteAdmin(@PathVariable int id) {
+        int mark = adminService.deleteAdmin(id);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

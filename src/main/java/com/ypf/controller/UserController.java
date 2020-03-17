@@ -5,10 +5,7 @@ import com.ypf.service.impl.UserService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -92,13 +89,13 @@ public class UserController {
 
     /**
      * 删除
-     * @param params
+     * @param id
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/deleteUserById",method = RequestMethod.DELETE)
-    private JsonResult deleteUserById(@RequestBody Map<String,Object> params) {
-        int mark = userService.deleteUserById(params);
+    @RequestMapping(value = "/deleteUserById/{id}",method = RequestMethod.DELETE)
+    private JsonResult deleteUserById(@PathVariable int id) {
+        int mark = userService.deleteUserById(id);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

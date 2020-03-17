@@ -45,7 +45,7 @@
     </update>
 
     <!--删除-->
-    <update id="deleteUserById" parameterType="map">
+    <update id="deleteUserById" parameterType="int">
         update user set deleteFlag=1 where id=#{id} and deleteFlag=0
     </update>
 

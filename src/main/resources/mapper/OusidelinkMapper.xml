@@ -42,7 +42,7 @@
     </update>
 
     <!--删除-->
-    <update id="deleteOutsidelink" parameterType="map">
+    <update id="deleteOutsidelink" parameterType="int">
         update outsidelink set deleteFlag=1 where id=#{id} and deleteFlag=0
     </update>
 

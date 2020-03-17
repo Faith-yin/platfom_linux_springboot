@@ -28,6 +28,6 @@ public interface IssuesMapper {
     int updateIssues(Issues issues);
 
     //删除
-    int deleteIssuesById(Map<String,Object> params);
+    int deleteIssuesById(int id);
 
 }

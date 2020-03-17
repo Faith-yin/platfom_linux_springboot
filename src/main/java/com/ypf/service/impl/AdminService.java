@@ -72,8 +72,8 @@ public class AdminService implements IAdminService {
 
     //删除
     @Override
-    public int deleteAdmin(Map<String,Object> params) {
-        int mark = adminMapper.deleteAdmin(params);
+    public int deleteAdmin(int id) {
+        int mark = adminMapper.deleteAdmin(id);
         return mark;
     }
 

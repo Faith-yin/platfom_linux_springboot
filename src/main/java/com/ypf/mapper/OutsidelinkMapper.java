@@ -25,6 +25,6 @@ public interface OutsidelinkMapper {
     int updateOutsidelink(OutsideLink outsideLink);
 
     //删除
-    int deleteOutsidelink(Map<String,Object> params);
+    int deleteOutsidelink(int id);
 
 }

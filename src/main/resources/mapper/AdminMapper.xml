@@ -45,7 +45,7 @@
     </update>
 
     <!--删除-->
-    <update id="deleteAdmin" parameterType="map">
+    <update id="deleteAdmin" parameterType="int">
         update admin set deleteFlag=1 where id=#{id} and deleteFlag=0
     </update>
 

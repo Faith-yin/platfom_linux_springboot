@@ -61,8 +61,8 @@ public class UserService implements IUserService {
 
     //删除
     @Override
-    public int deleteUserById(Map<String,Object> params) {
-        int mark = userMapper.deleteUserById(params);
+    public int deleteUserById(int id) {
+        int mark = userMapper.deleteUserById(id);
         return mark;
     }
 

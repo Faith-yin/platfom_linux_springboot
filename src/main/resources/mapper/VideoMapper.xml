@@ -44,7 +44,7 @@
     </update>
 
     <!--删除-->
-    <update id="deleteVideo" parameterType="map">
+    <update id="deleteVideo" parameterType="int">
         update video set deleteFlag=1 where id=#{id} and deleteFlag=0
     </update>
 

@@ -5,10 +5,7 @@ import com.ypf.service.impl.ArticleService;
 import com.ypf.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -80,9 +77,9 @@ public class ArticleController {
      * 删除
      */
     @ResponseBody
-    @RequestMapping(value = "/deleteArticle",method = RequestMethod.DELETE)
-    private JsonResult deleteArticle(@RequestBody Map<String,Object> params) {
-        int mark = articleService.deleteArticle(params);
+    @RequestMapping(value = "/deleteArticle/{id}",method = RequestMethod.DELETE)
+    private JsonResult deleteArticle(@PathVariable int id) {
+        int mark = articleService.deleteArticle(id);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

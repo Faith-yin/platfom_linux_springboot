@@ -55,8 +55,8 @@ public class VideoService implements IVideoService {
 
     //删除
     @Override
-    public int deleteVideo(Map<String,Object> params) {
-        int mark = videoMapper.deleteVideo(params);
+    public int deleteVideo(int id) {
+        int mark = videoMapper.deleteVideo(id);
         return mark;
     }
 

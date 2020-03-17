@@ -23,6 +23,6 @@ public interface IVideoService {
     int updateVideo(Video video);
 
     //删除
-    int deleteVideo(Map<String,Object> params);
+    int deleteVideo(int id);
 
 }

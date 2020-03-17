@@ -26,6 +26,6 @@ public interface ArticleMapper {
     int updateArticle(Article article);
 
     //删除
-    int deleteArticle(Map<String,Object> params);
+    int deleteArticle(int id);
 
 }

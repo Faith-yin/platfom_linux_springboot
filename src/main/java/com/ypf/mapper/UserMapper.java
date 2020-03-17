@@ -28,6 +28,6 @@ public interface UserMapper {
     int updateUserById(User user);
 
     //删除
-    int deleteUserById(Map<String,Object> params);
+    int deleteUserById(int id);
 
 }

@@ -29,6 +29,6 @@ public interface IAdminService {
     int updateAdmin(Admin admin);
 
     //删除
-    int deleteAdmin(Map<String,Object> params);
+    int deleteAdmin(int id);
 
 }

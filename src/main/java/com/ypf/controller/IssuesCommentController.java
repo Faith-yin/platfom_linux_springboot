@@ -76,9 +76,9 @@ public class IssuesCommentController {
      * 删除
      */
     @ResponseBody
-    @RequestMapping(value = "/deleteIssuesComment",method = RequestMethod.DELETE)
-    private JsonResult deleteIssuesComment(@RequestBody Map<String,Object> params) {
-        int mark = issuesCommentService.deleteIssuesComment(params);
+    @RequestMapping(value = "/deleteIssuesComment/{id}",method = RequestMethod.DELETE)
+    private JsonResult deleteIssuesComment(@PathVariable int id) {
+        int mark = issuesCommentService.deleteIssuesComment(id);
         if(mark == 1) return jsonResult.ok();
         return jsonResult.errorMessage("操作失败");
     }

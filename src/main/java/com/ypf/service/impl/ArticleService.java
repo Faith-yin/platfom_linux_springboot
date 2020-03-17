@@ -54,8 +54,8 @@ public class ArticleService implements IArticleService {
 
     //删除
     @Override
-    public int deleteArticle(Map<String,Object> params) {
-        int mark = articleMapper.deleteArticle(params);
+    public int deleteArticle(int id) {
+        int mark = articleMapper.deleteArticle(id);
         return mark;
     }
 
