@@ -9,14 +9,20 @@ import java.util.Map;
 @Repository
 public interface VideoMapper {
 
-    //查询全部
+    //查询全部: 审核已通过的
     List<Object> showAllVideo();
+
+    //查询全部: 所有状态的
+    List<Object> showVideo();
 
     //条件查询：按照id查询
     List<Object> findVideoById(int id);
 
-    //模糊查询
+    //模糊查询: 审核已通过的
     List<Object> fuzzyFindVideo(Map<String,Object> params);
+
+    //模糊查询: 所有状态的
+    List<Object> fuzzyVideo(Map<String,Object> params);
 
     //添加
     int addVideo(Video video);

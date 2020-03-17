@@ -21,7 +21,7 @@ public class VideoController {
 
 
     /**
-     * 查询全部
+     * 查询全部: 审核已通过的
      */
     @ResponseBody
     @RequestMapping(value = "/showAllVideo",method = RequestMethod.POST)
@@ -31,6 +31,22 @@ public class VideoController {
             return jsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = videoService.fuzzyFindVideo(params);
+            return jsonResult.ok(list1);
+        }
+    }
+
+
+    /**
+     * 查询全部: 所有状态的
+     */
+    @ResponseBody
+    @RequestMapping(value = "/showVideo",method = RequestMethod.POST)
+    private JsonResult showVideo(@RequestBody Map<String,Object> params) {
+        if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+            List<Object> list = videoService.showVideo();
+            return jsonResult.ok(list);
+        } else { //如果有入参，就模糊查询
+            List<Object> list1 = videoService.fuzzyVideo(params);
             return jsonResult.ok(list1);
         }
     }

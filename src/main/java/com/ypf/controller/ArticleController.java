@@ -20,7 +20,7 @@ public class ArticleController {
 
 
     /**
-     * 查询全部
+     * 查询全部: 审核已通过的
      */
     @ResponseBody
     @RequestMapping(value = "/showAllArticle",method = RequestMethod.POST)
@@ -30,6 +30,22 @@ public class ArticleController {
             return jsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = articleService.fuzzyFindArticle(params);
+            return jsonResult.ok(list1);
+        }
+    }
+
+
+    /**
+     * 查询全部: 所有状态的
+     */
+    @ResponseBody
+    @RequestMapping(value = "/showArticle",method = RequestMethod.POST)
+    private JsonResult showArticle(@RequestBody Map<String,Object> params) {
+        if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+            List<Object> list = articleService.showArticle();
+            return jsonResult.ok(list);
+        } else { //如果有入参，就模糊查询
+            List<Object> list1 = articleService.fuzzyArticle(params);
             return jsonResult.ok(list1);
         }
     }

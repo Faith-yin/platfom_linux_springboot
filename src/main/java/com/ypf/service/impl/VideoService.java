@@ -18,10 +18,17 @@ public class VideoService implements IVideoService {
     @Autowired
     private VideoMapper videoMapper;
 
-    //查询全部
+    //查询全部: 审核已通过的
     @Override
     public List<Object> showAllVideo() {
         List<Object> list = videoMapper.showAllVideo();
+        return list;
+    }
+
+    //查询全部: 所有状态的
+    @Override
+    public List<Object> showVideo() {
+        List<Object> list = videoMapper.showVideo();
         return list;
     }
 
@@ -32,10 +39,17 @@ public class VideoService implements IVideoService {
         return list;
     }
 
-    //模糊查询
+    //模糊查询: 审核已通过的
     @Override
     public List<Object> fuzzyFindVideo(Map<String,Object> params) {
         List<Object> list = videoMapper.fuzzyFindVideo(params);
+        return list;
+    }
+
+    //模糊查询: 所有状态的
+    @Override
+    public List<Object> fuzzyVideo(Map<String,Object> params) {
+        List<Object> list = videoMapper.fuzzyVideo(params);
         return list;
     }
 

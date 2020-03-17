@@ -17,10 +17,17 @@ public class ArticleService implements IArticleService {
     @Autowired
     private ArticleMapper articleMapper;
 
-    //查询全部
+    //查询全部: 审核已通过的
     @Override
     public List<Object> showAllArticle() {
         List<Object> list = articleMapper.showAllArticle();
+        return list;
+    }
+
+    //查询全部: 所有状态的
+    @Override
+    public List<Object> showArticle() {
+        List<Object> list = articleMapper.showArticle();
         return list;
     }
 
@@ -31,10 +38,17 @@ public class ArticleService implements IArticleService {
         return list;
     }
 
-    //模糊查询
+    //模糊查询: 审核已通过的
     @Override
     public List<Object> fuzzyFindArticle(Map<String,Object> params) {
         List<Object> list = articleMapper.fuzzyFindArticle(params);
+        return list;
+    }
+
+    //模糊查询: 所有状态的
+    @Override
+    public List<Object> fuzzyArticle(Map<String, Object> params) {
+        List<Object> list = articleMapper.fuzzyArticle(params);
         return list;
     }
 
