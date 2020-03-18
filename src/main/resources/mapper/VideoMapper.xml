@@ -6,7 +6,7 @@
     <!--查询全部: 审核已通过的-->
     <select id="showAllVideo" resultType="map">
         select video.*,user.username from video,user
-        where video.userId=user.id and video.deleteFlag = 0 and video.checkStatus = 1
+        where video.userId=user.id and video.deleteFlag = 0 and video.checkStatus = 2
     </select>
 
     <!--查询全部: 所有状态的-->
@@ -18,7 +18,10 @@
     <!--条件查询：按照id查询-->
     <select id="findVideoById" parameterType="int" resultType="map">
         select video.*,user.username from video,user
-        where video.userId=user.id and video.id=#{id} and video.deleteFlag = 0 and video.checkStatus = 1
+        where video.userId=user.id
+              and video.id=#{id}
+              and video.deleteFlag = 0
+              and video.checkStatus = 2
     </select>
 
     <!--模糊查询: 审核已通过的-->
@@ -27,7 +30,7 @@
         where (video.title LIKE '%${value}%' OR video.content LIKE '%${value}%')
               and video.userId=user.id
               and video.deleteFlag = 0
-              and video.checkStatus = 1
+              and video.checkStatus = 2
     </select>
 
     <!--模糊查询: 所有状态的-->
@@ -52,7 +55,8 @@
             <if test="title!=null">title=#{title},</if>
             <if test="content!=null">content=#{content},</if>
             <if test="link!=null">link=#{link},</if>
-            <if test="viewCount!=null">viewCount=#{viewCount},</if>
+            <if test="viewCount!=0">viewCount=#{viewCount},</if>
+            <if test="checkStatus!=0">checkStatus=#{checkStatus},</if>
         </trim>
         where id = #{id} and deleteFlag = 0
     </update>

@@ -38,7 +38,7 @@
         update issues
         <trim prefix="set" suffixOverrides=",">
             <if test="title!=null">title=#{title}</if>
-            <if test="viewCount!=null">viewCount=#{viewCount},</if>
+            <if test="viewCount!=0">viewCount=#{viewCount},</if>
         </trim>
         where id=#{id} and deleteFlag=0
     </update>

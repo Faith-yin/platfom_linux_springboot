@@ -88,6 +88,18 @@ public class UserController {
 
 
     /**
+     * 修改：重置密码
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updateUserPassword/{id}",method = RequestMethod.PUT)
+    private JsonResult updateUserPassword(@PathVariable int id) {
+        int mark = userService.updateUserPassword(id);
+        if(mark == 1) return jsonResult.ok();
+        return jsonResult.errorMessage("操作失败");
+    }
+
+
+    /**
      * 删除
      * @param id
      * @return

@@ -23,6 +23,6 @@ public class Article {
     private Timestamp date; //上传时间
     private int viewCount; //浏览次数
     private int deleteFlag; //是否删除
-    private int checkStatus; //审核标志：0未通过，1通过，2审核中(默认)
+    private int checkStatus; //审核标志：3未通过，2通过，1审核中(默认)
 
 }

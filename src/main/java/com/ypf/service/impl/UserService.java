@@ -59,6 +59,13 @@ public class UserService implements IUserService {
         return mark;
     }
 
+    //修改：重置密码
+    @Override
+    public int updateUserPassword(int id) {
+        int mark = userMapper.updateUserPassword(id);
+        return mark;
+    }
+
     //删除
     @Override
     public int deleteUserById(int id) {

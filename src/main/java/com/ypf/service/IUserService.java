@@ -25,6 +25,9 @@ public interface IUserService {
     //修改
     int updateUserById(User user);
 
+    //修改：重置密码
+    int updateUserPassword(int id);
+
     //删除
     int deleteUserById(int id);
 

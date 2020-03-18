@@ -27,7 +27,8 @@
 
     <!--添加-->
     <insert id="addUser" parameterType="User">
-        insert into user (username,password) values (#{username},#{password})
+        insert into user (username,password,sex,birthday,photo)
+        values (#{username},#{password},#{sex},#{birthday},#{photo})
     </insert>
 
     <!--修改-->
@@ -42,6 +43,11 @@
             <if test="photo!=null">photo=#{photo},</if>
         </trim>
         where id = #{id} and deleteFlag = 0
+    </update>
+
+    <!--修改：重置密码-->
+    <update id="updateUserPassword" parameterType="int">
+        update user set password='123456' where id = #{id} and deleteFlag = 0
     </update>
 
     <!--删除-->
