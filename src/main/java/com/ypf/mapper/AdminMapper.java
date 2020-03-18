@@ -22,7 +22,10 @@ public interface AdminMapper {
     List<Admin> findAdminByNameAndPassword(Admin admin);
 
     //模糊查询
-    List<Object> fuzzyFindAdmin(Map<String,Object> value);
+    List<Admin> fuzzyFindAdmin(Map<String,Object> value);
+
+    //模糊查询: 当前管理员信息
+    List<Admin> fuzzyFindTheAdmin(Map<String,Object> value);
 
     //添加
     int addAdmin(Admin admin);

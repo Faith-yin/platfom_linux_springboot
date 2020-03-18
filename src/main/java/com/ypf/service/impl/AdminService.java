@@ -48,8 +48,15 @@ public class AdminService implements IAdminService {
 
     //模糊查询
     @Override
-    public List<Object> fuzzyFindAdmin(Map<String,Object> value) {
-        List<Object> list = adminMapper.fuzzyFindAdmin(value);
+    public List<Admin> fuzzyFindAdmin(Map<String,Object> value) {
+        List<Admin> list = adminMapper.fuzzyFindAdmin(value);
+        return list;
+    }
+
+
+    //模糊查询: 当前管理员信息
+    public List<Admin> fuzzyFindTheAdmin(Map<String, Object> value) {
+        List<Admin> list = adminMapper.fuzzyFindTheAdmin(value);
         return list;
     }
 

@@ -29,6 +29,12 @@
         WHERE username LIKE '%${value}%' AND deleteFlag=0
     </select>
 
+    <!--模糊查询: 当前管理员信息-->
+    <select id="fuzzyFindTheAdmin" parameterType="map" resultType="map">
+        SELECT * FROM admin
+        WHERE username LIKE '%${value}%' AND deleteFlag=0 and id=#{id}
+    </select>
+
     <!--添加-->
     <insert id="addAdmin" parameterType="Admin">
         insert into admin (username,password) values (#{username},#{password})

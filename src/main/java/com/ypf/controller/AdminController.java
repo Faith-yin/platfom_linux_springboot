@@ -25,13 +25,34 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "/showAllAdmin",method = RequestMethod.POST)
     private JsonResult showAllAdmin(@RequestBody Map<String,Object> params) {
-        if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
-            List<Admin> list = adminService.showAllAdmin();
-            return jsonResult.ok(list);
-        } else { //如果有入参，就模糊查询
-            List<Object> list1 = adminService.fuzzyFindAdmin(params);
-            return jsonResult.ok(list1);
+        if((int) params.get("id") == 1000) { //如果是超级管理员，返回全部管理员信息
+            if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+                List<Admin> list = adminService.showAllAdmin();
+                return jsonResult.ok(list);
+            } else { //如果有入参，就模糊查询
+                List<Admin> list1 = adminService.fuzzyFindAdmin(params);
+                return jsonResult.ok(list1);
+            }
+        } else { //如果不是超级管理员，只返回当前管理员信息
+            if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
+                List<Admin> list2 = adminService.findAdminById((int) params.get("id"));
+                return jsonResult.ok(list2);
+            } else { //如果有入参，就模糊查询
+                List<Admin> list3 = adminService.fuzzyFindTheAdmin(params);
+                return jsonResult.ok(list3);
+            }
         }
+
+    }
+
+
+    /**
+     * 条件查询: 根据管理员id查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findAdminById",method = RequestMethod.POST)
+    private JsonResult findAdminById() {
+        return jsonResult.ok();
     }
 
 
