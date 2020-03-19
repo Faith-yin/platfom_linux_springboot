@@ -46,6 +46,7 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="username!=null">username=#{username},</if>
             <if test="password!=null">password=#{password},</if>
+            <if test="lastLoginTime!=null">lastLoginTime=#{lastLoginTime},</if>
         </trim>
         where id = #{id} and deleteFlag=0
     </update>
