@@ -18,13 +18,20 @@
           and article.deleteFlag = 0
     </select>
 
-    <!--条件查询：按照id查询-->
+    <!--条件查询：按照文章id查询 所有状态的-->
     <select id="findArticleById" parameterType="int" resultType="map">
         select article.*,user.username from article,user
         where article.userId=user.id
-              and article.id=#{id}
-              and article.deleteFlag=0
-              and article.checkStatus=2
+            and article.id=#{id}
+            and article.deleteFlag=0
+    </select>
+
+    <!--条件查询：按照用户id查询 所有状态的-->
+    <select id="findArticleByUserId" parameterType="map" resultType="map">
+        select article.*,user.username from article,user
+        where article.userId=user.id
+          and user.id=#{userId}
+          and article.deleteFlag=0
     </select>
 
     <!--模糊查询: 审核已通过的-->

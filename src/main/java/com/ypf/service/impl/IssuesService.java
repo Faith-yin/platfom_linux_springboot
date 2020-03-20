@@ -33,8 +33,8 @@ public class IssuesService implements IIssuesService {
 
     //条件查询：根据提出者用户id查询
     @Override
-    public List<Issues> findIssuesByUserId(int id) {
-        List<Issues> list = issuesMapper.findIssuesByUserId(id);
+    public List<Object> findIssuesByUserId(Map<String,Object> params) {
+        List<Object> list = issuesMapper.findIssuesByUserId(params);
         return list;
     }
 
@@ -58,6 +58,14 @@ public class IssuesService implements IIssuesService {
         int mark = issuesMapper.updateIssues(issues);
         return mark;
     }
+
+    //修改：更新评论数目
+    @Override
+    public int updateIssuesCommentNum(int id) {
+        int mark = issuesMapper.updateIssuesCommentNum(id);
+        return mark;
+    }
+
 
     //删除
     @Override

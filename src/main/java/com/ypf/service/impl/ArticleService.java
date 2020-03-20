@@ -31,10 +31,17 @@ public class ArticleService implements IArticleService {
         return list;
     }
 
-    //条件查询：根据id查询
+    //条件查询：按照文章id查询 所有状态的
     @Override
     public List<Object> findArticleById(int id) {
         List<Object> list = articleMapper.findArticleById(id);
+        return list;
+    }
+
+    //条件查询：按照用户id查询 所有状态的
+    @Override
+    public List<Object> findArticleByUserId(Map<String,Object> params) {
+        List<Object> list = articleMapper.findArticleByUserId(params);
         return list;
     }
 

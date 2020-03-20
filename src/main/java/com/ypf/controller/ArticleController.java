@@ -52,12 +52,23 @@ public class ArticleController {
 
 
     /**
-     * 条件查询：按照id查询
+     * 条件查询：按照文章id查询 所有状态的
      */
     @ResponseBody
-    @RequestMapping(value = "/findArticleById",method = RequestMethod.GET)
+    @RequestMapping(value = "/findArticleById",method = RequestMethod.POST)
     private JsonResult findArticleById(int id) {
         List<Object> list = articleService.findArticleById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
+     * 条件查询：按照用户id查询 所有状态的
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findArticleByUserId",method = RequestMethod.POST)
+    private JsonResult findArticleByUserId(@RequestBody Map<String,Object> params) {
+        List<Object> list = articleService.findArticleByUserId(params);
         return jsonResult.ok(list);
     }
 

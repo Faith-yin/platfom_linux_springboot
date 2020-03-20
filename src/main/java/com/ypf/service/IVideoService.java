@@ -13,8 +13,11 @@ public interface IVideoService {
     //查询全部: 所有状态的
     List<Object> showVideo();
 
-    //条件查询：按照id查询
+    //条件查询：按照video id查询 所有状态的
     List<Object> findVideoById(int id);
+
+    //条件查询：按照user id查询 所有状态的
+    List<Object> findVideoByUserId(Map<String,Object> params);
 
     //模糊查询: 审核已通过的
     List<Object> fuzzyFindVideo(Map<String,Object> params);

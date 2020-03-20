@@ -17,6 +17,8 @@ public class IssuesCommentController {
 
     @Autowired
     private IssuesCommentService issuesCommentService;
+    @Autowired
+    private IssuesService issuesService;
     private JsonResult jsonResult;
 
 
@@ -53,8 +55,15 @@ public class IssuesCommentController {
     @ResponseBody
     @RequestMapping(value = "/addIssuesComment",method = RequestMethod.POST)
     private JsonResult addIssuesComment(@RequestBody IssuesComment issuesComment) {
+        //添加评论
         int mark = issuesCommentService.addIssuesComment(issuesComment);
-        if(mark == 1) return jsonResult.ok();
+        if(mark == 1) {
+            //更新对应issue问题下评论数目 +1
+            int mark1 = issuesService.updateIssuesCommentNum(issuesComment.getIssueId());
+            if(mark1 == 1) {
+                return jsonResult.ok();
+            }
+        }
         return jsonResult.errorMessage("操作失败");
     }
 

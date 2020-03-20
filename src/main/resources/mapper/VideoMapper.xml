@@ -15,13 +15,21 @@
         where video.userId=user.id and video.deleteFlag = 0
     </select>
 
-    <!--条件查询：按照id查询-->
+    <!--条件查询：按照video id查询 所有状态的-->
     <select id="findVideoById" parameterType="int" resultType="map">
         select video.*,user.username from video,user
         where video.userId=user.id
               and video.id=#{id}
               and video.deleteFlag = 0
               and video.checkStatus = 2
+    </select>
+
+    <!--条件查询：按照user id查询 所有状态的-->
+    <select id="findVideoByUserId" parameterType="map" resultType="map">
+        select video.*,user.username from video,user
+        where video.userId=user.id
+          and user.id=#{userId}
+          and video.deleteFlag = 0
     </select>
 
     <!--模糊查询: 审核已通过的-->

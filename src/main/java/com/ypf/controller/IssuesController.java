@@ -1,5 +1,7 @@
 package com.ypf.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ypf.entity.Issues;
 import com.ypf.service.impl.IssuesService;
 import com.ypf.util.JsonResult;
@@ -43,6 +45,17 @@ public class IssuesController {
     @RequestMapping(value = "/findIssuesById",method = RequestMethod.GET)
     private JsonResult findIssuesById(int id) {
         List<Object> list = issuesService.findIssuesById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
+     * 条件查询：根据提出者用户id查询
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findIssuesByUserId",method = RequestMethod.POST)
+    private JsonResult findIssuesByUserId(@RequestBody Map<String,Object> params) {
+        List<Object> list = issuesService.findIssuesByUserId(params);
         return jsonResult.ok(list);
     }
 

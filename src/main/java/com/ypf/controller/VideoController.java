@@ -53,12 +53,23 @@ public class VideoController {
 
 
     /**
-     * 条件查询：按照id查询
+     * 条件查询：按照video id查询 所有状态的
      */
     @ResponseBody
     @RequestMapping(value = "/findVideoById",method = RequestMethod.GET)
     private JsonResult findVideoById(int id) {
         List<Object> list = videoService.findVideoById(id);
+        return jsonResult.ok(list);
+    }
+
+
+    /**
+     * 条件查询：按照user id查询 所有状态的
+     */
+    @ResponseBody
+    @RequestMapping(value = "/findVideoByUserId",method = RequestMethod.POST)
+    private JsonResult findVideoByUserId(@RequestBody Map<String,Object> params) {
+        List<Object> list = videoService.findVideoByUserId(params);
         return jsonResult.ok(list);
     }
 

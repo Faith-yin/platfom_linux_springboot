@@ -32,10 +32,16 @@ public class VideoService implements IVideoService {
         return list;
     }
 
-    //条件查询：按照id查询
+    //条件查询：按照video id查询 所有状态的
     @Override
     public List<Object> findVideoById(int id) {
         List<Object> list = videoMapper.findVideoById(id);
+        return list;
+    }
+
+    //条件查询：按照user id查询 所有状态的
+    public List<Object> findVideoByUserId(Map<String,Object> params) {
+        List<Object> list = videoMapper.findVideoByUserId(params);
         return list;
     }
 

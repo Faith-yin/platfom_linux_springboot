@@ -9,15 +9,18 @@
         where issues.userId=user.id and issues.deleteFlag = 0
     </select>
 
-    <!--条件查询：按照id查询-->
+    <!--条件查询：issues id查询-->
     <select id="findIssuesById" parameterType="int" resultType="map">
         select issues.*,user.username from issues,user
         where issues.userId=user.id and issues.id=#{id} and issues.deleteFlag=0
     </select>
 
-    <!--条件查询：根据提出者用户id查询-->
-    <select id="findIssuesByUserId" parameterType="int" resultType="Issues">
-        select * from issues where userId=#{userId} and deleteFlag=0
+    <!--条件查询：user id查询-->
+    <select id="findIssuesByUserId" parameterType="map" resultType="map">
+        select issues.*,user.username from issues,user
+        where issues.userId=user.id
+              and issues.userId=#{userId}
+              and issues.deleteFlag=0
     </select>
 
     <!--模糊查询-->
@@ -40,6 +43,12 @@
             <if test="title!=null">title=#{title}</if>
             <if test="viewCount!=0">viewCount=#{viewCount},</if>
         </trim>
+        where id=#{id} and deleteFlag=0
+    </update>
+
+    <!--修改：更新评论数目-->
+    <update id="updateIssuesCommentNum" parameterType="int">
+        update issues set commentNum=commentNum+1
         where id=#{id} and deleteFlag=0
     </update>
 

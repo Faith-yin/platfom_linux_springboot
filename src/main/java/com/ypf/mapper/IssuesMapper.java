@@ -16,7 +16,7 @@ public interface IssuesMapper {
     List<Object> findIssuesById(int id);
 
     //条件查询：根据提出者用户id查询
-    List<Issues> findIssuesByUserId(int id);
+    List<Object> findIssuesByUserId(Map<String,Object> params);
 
     //模糊查询
     List<Object> fuzzyFindIssues(Map<String,Object> params);
@@ -26,6 +26,9 @@ public interface IssuesMapper {
 
     //修改
     int updateIssues(Issues issues);
+
+    //修改：更新评论数目
+    int updateIssuesCommentNum(int id);
 
     //删除
     int deleteIssuesById(int id);

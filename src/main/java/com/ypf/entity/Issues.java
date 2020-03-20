@@ -22,6 +22,7 @@ public class Issues {
     private int viewCount; //浏览次数
     private int userId; //提出者用户id
     private int deleteFlag; //是否删除
+    private int commentNum; //评论数目
 
 
 }
