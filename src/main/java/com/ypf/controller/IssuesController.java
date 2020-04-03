@@ -39,6 +39,17 @@ public class IssuesController {
 
 
     /**
+     * 查询全部：按阅读量降序排列
+     */
+    @ResponseBody
+    @RequestMapping(value = "/showIssuesOrderByView",method = RequestMethod.GET)
+    private JsonResult showIssuesOrderByView() {
+        List<Object> list = issuesService.showIssuesOrderByView();
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 条件查询：根据id查询
      */
     @ResponseBody

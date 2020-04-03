@@ -15,6 +15,12 @@ public interface VideoMapper {
     //查询全部: 所有状态的
     List<Object> showVideo();
 
+    //查询全部：按阅读量降序排列
+    List<Object> showVideoOrderByView();
+
+    //查询全部: 数目
+    int showVideoNumber();
+
     //条件查询：按照video id查询 所有状态的
     List<Object> findVideoById(int id);
 

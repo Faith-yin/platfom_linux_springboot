@@ -31,6 +31,20 @@ public class ArticleService implements IArticleService {
         return list;
     }
 
+    //查询全部：按阅读量降序排列
+    @Override
+    public List<Object> showArticleOrderByView(){
+        List<Object> list = articleMapper.showArticleOrderByView();
+        return list;
+    }
+
+    //查询全部: 数目
+    @Override
+    public int showArticleNumber() {
+        int number = articleMapper.showArticleNumber();
+        return number;
+    }
+
     //条件查询：按照文章id查询 所有状态的
     @Override
     public List<Object> findArticleById(int id) {

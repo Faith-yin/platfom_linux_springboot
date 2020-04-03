@@ -12,6 +12,12 @@ public interface IssuesMapper {
     //查询全部
     List<Object> showAllIssues();
 
+    //查询全部：按阅读量降序排列
+    List<Object> showIssuesOrderByView();
+
+    //查询全部: 数目
+    int showIssuesNumber();
+
     //条件查询：根据id查询
     List<Object> findIssuesById(int id);
 

@@ -24,6 +24,20 @@ public class IssuesService implements IIssuesService {
         return list;
     }
 
+    //查询全部：按阅读量降序排列
+    @Override
+    public List<Object> showIssuesOrderByView() {
+        List<Object> list = issuesMapper.showIssuesOrderByView();
+        return list;
+    }
+
+    //查询全部: 数目
+    @Override
+    public int showIssuesNumber() {
+        int number = issuesMapper.showIssuesNumber();
+        return number;
+    }
+
     //条件查询：根据id查询
     @Override
     public List<Object> findIssuesById(int id) {

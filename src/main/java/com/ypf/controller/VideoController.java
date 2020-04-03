@@ -53,6 +53,17 @@ public class VideoController {
 
 
     /**
+     * 查询全部：按阅读量降序排列
+     */
+    @ResponseBody
+    @RequestMapping(value = "/showVideoOrderByView",method = RequestMethod.GET)
+    private JsonResult showVideoOrderByView() {
+        List<Object> list = videoService.showVideoOrderByView();
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 条件查询：按照video id查询 所有状态的
      */
     @ResponseBody

@@ -13,6 +13,12 @@ public interface IArticleService {
     //查询全部: 所有状态的
     List<Object> showArticle();
 
+    //查询全部：按阅读量降序排列
+    List<Object> showArticleOrderByView();
+
+    //查询全部: 数目
+    int showArticleNumber();
+
     //条件查询：按照文章id查询 所有状态的
     List<Object> findArticleById(int id);
 

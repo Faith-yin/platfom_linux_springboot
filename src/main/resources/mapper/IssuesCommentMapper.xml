@@ -9,13 +9,15 @@
         where issuescomment.userId=user.id
               and issuescomment.issueId=issues.id
               and issuescomment.deleteFlag = 0
+        order by issuescomment.date desc
     </select>
 
     <!--条件查询：根据归属问题issueId查询-->
     <select id="findIssuesCommentByIssuesId" parameterType="int" resultType="map">
         select issuescomment.*,user.username,user.photo from issuescomment,user
         where issuescomment.userId=user.id and issuescomment.issueId=#{issueId} and issuescomment.deleteFlag = 0
-    </select>
+        order by issuescomment.date desc
+</select>
 
     <!--模糊查询-->
     <select id="fuzzyFindIssuesComment" parameterType="map" resultType="map">

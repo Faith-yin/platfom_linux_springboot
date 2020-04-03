@@ -24,6 +24,13 @@ public class InformationService implements IInformationService {
         return list;
     }
 
+    //查询全部: 数目
+    @Override
+    public int showInformationNumber() {
+        int number = informationMapper.showInformationNumber();
+        return number;
+    }
+
     //条件查询：按照id查询
     @Override
     public  List<Object> findInformationById(int id) {

@@ -7,6 +7,13 @@
     <select id="showAllInformation" resultType="map">
         select information.*,admin.username from information,admin
         where information.adminId=admin.id and information.deleteFlag=0
+        order by information.date desc
+    </select>
+
+    <!--查询全部: 数目-->
+    <select id="showInformationNumber" resultType="int">
+        SELECT COUNT(*) FROM information
+        where deleteFlag = 0
     </select>
 
     <!--条件查询：按照id查询-->

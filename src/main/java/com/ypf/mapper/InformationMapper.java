@@ -12,6 +12,9 @@ public interface InformationMapper {
     //查询全部
     List<Object> showAllInformation();
 
+    //查询全部: 数目
+    int showInformationNumber();
+
     //条件查询：按照id查询
     List<Object> findInformationById(int id);
 

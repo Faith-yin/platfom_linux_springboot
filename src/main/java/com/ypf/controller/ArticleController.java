@@ -52,6 +52,17 @@ public class ArticleController {
 
 
     /**
+     * 查询全部：按阅读量降序排列
+     */
+    @ResponseBody
+    @RequestMapping(value = "/showArticleOrderByView",method = RequestMethod.GET)
+    private JsonResult showArticleOrderByView() {
+        List<Object> list = articleService.showArticleOrderByView();
+        return jsonResult.ok(list);
+    }
+
+
+    /**
      * 条件查询：按照文章id查询 所有状态的
      */
     @ResponseBody

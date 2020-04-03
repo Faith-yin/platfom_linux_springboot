@@ -25,6 +25,13 @@ public class OutsidelinkService implements IOutsidelinkService {
         return list;
     }
 
+    //查询全部: 数目
+    @Override
+    public int showOutsidelinkNumber() {
+        int number = outsidelinkMapper.showOutsidelinkNumber();
+        return number;
+    }
+
     //条件查询：按照id查询
     @Override
     public List<Object> findOutsidelinkById(int id) {

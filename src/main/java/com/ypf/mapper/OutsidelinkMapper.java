@@ -12,6 +12,9 @@ public interface OutsidelinkMapper {
     //查询全部
     List<Object> showAllOutsidelink();
 
+    //查询全部: 数目
+    int showOutsidelinkNumber();
+
     //条件查询：按照id查询
     List<Object> findOutsidelinkById(int id);
 

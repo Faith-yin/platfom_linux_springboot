@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ypf.mapper.WebVisitorNumMapper">
+
+    <!--查询全部: 按照日期降序-->
+    <select id="showAllWebNum" resultType="WebVisitorNum">
+        select * from web_visitor_num
+        where DATE_SUB(CURDATE(), INTERVAL 6 DAY) &lt;= date(date) ORDER BY date desc
+    </select>
+    
+    <!--查找最新日期的数据-->
+    <select id="findIdByNewDate" resultType="WebVisitorNum">
+        select * from web_visitor_num
+        where date = CURDATE()
+    </select>
+
+    <!--添加-->
+    <insert id="addWebNum" parameterType="WebVisitorNum">
+        insert into web_visitor_num (date,viewCount) values (#{date},1)
+    </insert>
+
+    <!--修改-->
+    <update id="updateWebNum" parameterType="int">
+        update web_visitor_num set viewCount = viewCount+1
+        where id = #{id}
+    </update>
+
+
+
+</mapper>

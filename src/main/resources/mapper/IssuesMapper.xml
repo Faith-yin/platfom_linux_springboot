@@ -7,6 +7,20 @@
     <select id="showAllIssues" resultType="map">
         select issues.*,user.username from issues,user
         where issues.userId=user.id and issues.deleteFlag = 0
+        order by issues.date desc
+    </select>
+
+    <!--查询全部：按阅读量降序排列-->
+    <select id="showIssuesOrderByView" resultType="map">
+        select issues.*,user.username from issues,user
+        where issues.userId=user.id and issues.deleteFlag = 0
+        order by issues.viewCount desc
+    </select>
+
+    <!--查询全部: 数目-->
+    <select id="showIssuesNumber" resultType="int">
+        SELECT COUNT(*) FROM issues
+        where deleteFlag = 0
     </select>
 
     <!--条件查询：issues id查询-->

@@ -32,6 +32,20 @@ public class VideoService implements IVideoService {
         return list;
     }
 
+    //查询全部：按阅读量降序排列
+    @Override
+    public List<Object> showVideoOrderByView(){
+        List<Object> list = videoMapper.showVideoOrderByView();
+        return list;
+    }
+
+    //查询全部: 数目
+    @Override
+    public int showVideoNumber() {
+        int number = videoMapper.showVideoNumber();
+        return number;
+    }
+
     //条件查询：按照video id查询 所有状态的
     @Override
     public List<Object> findVideoById(int id) {
