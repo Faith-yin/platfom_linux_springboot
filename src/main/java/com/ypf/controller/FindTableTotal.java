@@ -51,7 +51,7 @@ public class FindTableTotal {
         String[] arrText = {"公告","文章","课程视频","Issues","站外学习链接"};
         //定义value数组
         int[] arrValue = {informationNumber,articleNumber,videoNumber,issuesNumber,outsidelinkNumber};
-        for (int i= 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             //定义map集合
             Map<Object,Object> map = new HashMap<>();
             map.put("text",arrText[i]);
@@ -59,15 +59,29 @@ public class FindTableTotal {
             list.add(map);
         }
         return jsonResult.ok(list);
+    }
 
-//        map.put("公告",informationNumber);
-//        map.put("文章",articleNumber);
-//        map.put("课程视频",videoNumber);
-//        map.put("Issues",issuesNumber);
-//        map.put("站外学习链接",outsidelinkNumber);
-//        List<Object> list = new ArrayList<Object>();
-//        return jsonResult.ok(map);
 
+    /**
+     * 近7日发布量
+     */
+    @ResponseBody
+    @RequestMapping(value = "/showPublish",method = RequestMethod.GET)
+    private JsonResult showPublish() {
+        List<Object> listArticle = articleService.showArticleOrderByDate();
+        List<Object> listVideo = videoService.showVideoOrderByDate();
+        List<Object> listIssues = issuesService.showIssuesOrderByDate();
+
+        //定义text数组
+        String[] arrText = {"article","video","issues"};
+        //定义map集合
+        Map<String,Object> map = new HashMap<>();
+        for (int i = 0; i < 3; i++) {
+            map.put(arrText[i],listArticle);
+            map.put(arrText[i],listVideo);
+            map.put(arrText[i],listIssues);
+        }
+        return jsonResult.ok(map);
 
     }
 

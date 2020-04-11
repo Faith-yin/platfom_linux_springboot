@@ -45,6 +45,30 @@
               and issues.deleteFlag=0
     </select>
 
+    <!--查询近7日发布量-->
+    <select id="showIssuesOrderByDate" resultType="map">
+        select a.date,ifnull(b.publishCount,0) as publishCount
+               from (
+                   SELECT curdate() as date
+                   union all
+                   SELECT date_sub(curdate(), interval 1 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 2 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 3 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 4 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 5 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 6 day) as date
+               ) a left join (
+            select date(date) as datetime, count(*) as publishCount
+        from issues
+        group by date(date)
+        ) b on a.date = b.datetime;
+    </select>
+
     <!--添加-->
     <insert id="addIssues" parameterType="Issues">
         insert into issues (title,date,userId) values (#{title},#{date},#{userId})

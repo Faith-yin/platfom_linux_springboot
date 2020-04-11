@@ -31,6 +31,9 @@ public interface IVideoService {
     //模糊查询: 所有状态的
     List<Object> fuzzyVideo(Map<String,Object> params);
 
+    //查询近7天发布量
+    List<Object> showVideoOrderByDate();
+
     //添加
     int addVideo(Video video);
 

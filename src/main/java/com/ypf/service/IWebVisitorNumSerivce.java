@@ -16,12 +16,12 @@ public interface IWebVisitorNumSerivce {
     List<Object> showAllWebNum();
 
     //查找最新日期的数据
-    List<Object> findIdByNewDate();
+    WebVisitorNum findIdByNewDate();
 
     //添加
-    int addWebNum(WebVisitorNum webVisitorNum);
+    int addWebNum();
 
     //修改
-    int updateWebNum(WebVisitorNum webVisitorNum);
+    int updateWebNum(int id);
 
 }

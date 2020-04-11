@@ -73,6 +73,14 @@ public class VideoService implements IVideoService {
         return list;
     }
 
+    //查询近7天发布量
+    @Override
+    public List<Object> showVideoOrderByDate() {
+        List<Object> list = videoMapper.showVideoOrderByDate();
+        return list;
+    }
+
+
     //添加
     @Override
     public int addVideo(Video video) {

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,20 +46,20 @@ public class WebVisitorNumController {
      * 更新数据viewCount访问量字段 +1
      */
     @ResponseBody
-    @RequestMapping(value = "/updateWebNumById",method = RequestMethod.POST)
-    private JsonResult updateWebNumById(@RequestBody WebVisitorNum webVisitorNum) {
+    @RequestMapping(value = "/webVisitorNum",method = RequestMethod.GET)
+    public Boolean updateWebNumById() {
         //判断当前表中最新日期字段是否今天日期
-        List<Object> list = webVisitorNumSerivce.findIdByNewDate();
-        if (list == null || list.size() ==0 ) {
+        WebVisitorNum webVisitorNum = webVisitorNumSerivce.findIdByNewDate();
+        if (webVisitorNum == null) {
             //最新日期不是今天: 添加
-            int mark = webVisitorNumSerivce.addWebNum(webVisitorNum);
-            if (mark == 1) return jsonResult.ok();
-            return jsonResult.errorMessage("操作失败");
+            int mark = webVisitorNumSerivce.addWebNum();
+            if (mark == 1) return true;
+            return false;
         }
         //最新日期是今天：更新viewCount +1
-        int mark1 = webVisitorNumSerivce.updateWebNum((WebVisitorNum) list.get(0));
-        if (mark1 == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        int mark1 = webVisitorNumSerivce.updateWebNum(webVisitorNum.getId());
+        if (mark1 == 1) return true;
+        return false;
     }
 
 

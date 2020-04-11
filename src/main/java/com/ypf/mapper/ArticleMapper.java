@@ -35,6 +35,9 @@ public interface ArticleMapper {
     //模糊查询: 所有状态的
     List<Object> fuzzyArticle(Map<String,Object> params);
 
+    //查询最近7天发布量
+    List<Object> showArticleOrderByDate();
+
     //添加
     int addArticle(Article article);
 

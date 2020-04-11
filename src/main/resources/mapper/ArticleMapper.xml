@@ -35,8 +35,26 @@
 
     <!--查询最近7天发布量-->
     <select id="showArticleOrderByDate" resultType="map">
-        select * from article
-        where DATE_SUB(CURDATE(), INTERVAL 6 DAY) &lt;= date(date)
+        select a.date,ifnull(b.publishCount,0) as publishCount
+               from (
+                   SELECT curdate() as date
+                   union all
+                   SELECT date_sub(curdate(), interval 1 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 2 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 3 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 4 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 5 day) as date
+                   union all
+                   SELECT date_sub(curdate(), interval 6 day) as date
+               ) a left join (
+            select date(date) as datetime, count(*) as publishCount
+        from article
+        group by date(date)
+        ) b on a.date = b.datetime;
     </select>
 
     <!--条件查询：按照文章id查询 所有状态的-->

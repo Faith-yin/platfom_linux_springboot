@@ -59,6 +59,13 @@ public class IssuesService implements IIssuesService {
         return list;
     }
 
+    //查询近7日发布量
+    @Override
+    public List<Object> showIssuesOrderByDate() {
+        List<Object> list = issuesMapper.showIssuesOrderByDate();
+        return list;
+    }
+
     //添加
     @Override
     public int addIssues(Issues issues) {

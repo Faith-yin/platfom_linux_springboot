@@ -27,6 +27,9 @@ public interface IssuesMapper {
     //模糊查询
     List<Object> fuzzyFindIssues(Map<String,Object> params);
 
+    //查询近7日发布量
+    List<Object> showIssuesOrderByDate();
+
     //添加
     int addIssues(Issues issues);
 

@@ -5,8 +5,32 @@
 
     <!--查询全部: 按照日期降序-->
     <select id="showAllWebNum" resultType="WebVisitorNum">
-        select * from web_visitor_num
-        where DATE_SUB(CURDATE(), INTERVAL 6 DAY) &lt;= date(date) ORDER BY date desc
+--         select * from web_visitor_num
+--         where DATE_SUB(CURDATE(), INTERVAL 6 DAY) &lt;= date(date) ORDER BY date desc
+
+--             select * from web_visitor_num
+--             ORDER BY date desc
+
+            select a.date,ifnull(b.viewCount,0) as viewCount
+            from (
+                     SELECT curdate() as date
+                     union all
+                     SELECT date_sub(curdate(), interval 1 day) as date
+                     union all
+                     SELECT date_sub(curdate(), interval 2 day) as date
+                     union all
+                     SELECT date_sub(curdate(), interval 3 day) as date
+                     union all
+                     SELECT date_sub(curdate(), interval 4 day) as date
+                     union all
+                     SELECT date_sub(curdate(), interval 5 day) as date
+                     union all
+                     SELECT date_sub(curdate(), interval 6 day) as date
+                 ) a left join (
+                select date(date) as datetime, count(*) as viewCount
+            from web_visitor_num
+            group by date(date)
+            ) b on a.date = b.datetime;
     </select>
     
     <!--查找最新日期的数据-->
@@ -16,8 +40,8 @@
     </select>
 
     <!--添加-->
-    <insert id="addWebNum" parameterType="WebVisitorNum">
-        insert into web_visitor_num (date,viewCount) values (#{date},1)
+    <insert id="addWebNum">
+        insert into web_visitor_num (date,viewCount) values (CURDATE(),1)
     </insert>
 
     <!--修改-->

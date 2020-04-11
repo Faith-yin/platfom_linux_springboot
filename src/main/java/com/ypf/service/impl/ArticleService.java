@@ -73,6 +73,13 @@ public class ArticleService implements IArticleService {
         return list;
     }
 
+    //查询最近7天发布量
+    @Override
+    public List<Object> showArticleOrderByDate() {
+        List<Object> list = articleMapper.showArticleOrderByDate();
+        return list;
+    }
+
     //添加
     @Override
     public int addArticle(Article article) {

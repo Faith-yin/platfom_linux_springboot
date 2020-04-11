@@ -33,24 +33,24 @@ public class WebVisitorNumSerivce implements IWebVisitorNumSerivce {
 
     //查找最新日期的数据
     @Override
-    public List<Object> findIdByNewDate() {
-        List<Object> list = webVisitorNumMapper.findIdByNewDate();
-        return list;
+    public WebVisitorNum findIdByNewDate() {
+        WebVisitorNum webVisitorNum = webVisitorNumMapper.findIdByNewDate();
+        return webVisitorNum;
     }
 
 
     //添加
     @Override
-    public int addWebNum(WebVisitorNum webVisitorNum) {
-        int mark = webVisitorNumMapper.addWebNum(webVisitorNum);
+    public int addWebNum() {
+        int mark = webVisitorNumMapper.addWebNum();
         return mark;
     }
 
 
     //修改
     @Override
-    public int updateWebNum(WebVisitorNum webVisitorNum) {
-        int mark = webVisitorNumMapper.updateWebNum(webVisitorNum);
+    public int updateWebNum(int id) {
+        int mark = webVisitorNumMapper.updateWebNum(id);
         return mark;
     }
 

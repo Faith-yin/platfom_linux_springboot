@@ -16,7 +16,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private WebVisitorNumController webVisitorNumController;
     private JsonResult jsonResult;
+
 
 
     /**
@@ -46,8 +49,11 @@ public class UserController {
         //检验查询的用户名和密码是否已注册
         //未注册时：
         if(list == null || list.isEmpty()) return jsonResult.errorMessage("用户名或密码输入错误");
-        //已注册：
-        return jsonResult.ok(list);
+        //已注册：添加访问量+1
+        Boolean mark = webVisitorNumController.updateWebNumById();
+        if (mark) return jsonResult.ok(list);
+        return jsonResult.errorMessage("增加访问量出错");
+
     }
 
 
