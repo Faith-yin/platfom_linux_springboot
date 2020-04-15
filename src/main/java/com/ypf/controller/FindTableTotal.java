@@ -75,11 +75,13 @@ public class FindTableTotal {
         //定义text数组
         String[] arrText = {"article","video","issues"};
         //定义map集合
+        List<Object> lists=new ArrayList<>();
+        lists.add(listArticle);
+        lists.add(listVideo);
+        lists.add(listIssues);
         Map<String,Object> map = new HashMap<>();
         for (int i = 0; i < 3; i++) {
-            map.put(arrText[i],listArticle);
-            map.put(arrText[i],listVideo);
-            map.put(arrText[i],listIssues);
+            map.put(arrText[i],lists.get(i));
         }
         return jsonResult.ok(map);
 
