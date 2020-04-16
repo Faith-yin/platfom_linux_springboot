@@ -32,14 +32,13 @@ public class FindTableTotal {
     private IssuesService issuesService;
     @Autowired
     private OutsidelinkService outsidelinkService;
-    private JsonResult jsonResult;
 
     /**
      * 总计数目
      */
     @ResponseBody
     @RequestMapping(value = "/findTotal",method = RequestMethod.GET)
-    private JsonResult findTotal() {
+    public JsonResult findTotal() {
         int informationNumber = informationService.showInformationNumber();
         int articleNumber = articleService.showArticleNumber();
         int videoNumber = videoService.showVideoNumber();
@@ -58,7 +57,7 @@ public class FindTableTotal {
             map.put("number",arrValue[i]);
             list.add(map);
         }
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -67,7 +66,7 @@ public class FindTableTotal {
      */
     @ResponseBody
     @RequestMapping(value = "/showPublish",method = RequestMethod.GET)
-    private JsonResult showPublish() {
+    public JsonResult showPublish() {
         List<Object> listArticle = articleService.showArticleOrderByDate();
         List<Object> listVideo = videoService.showVideoOrderByDate();
         List<Object> listIssues = issuesService.showIssuesOrderByDate();
@@ -83,7 +82,7 @@ public class FindTableTotal {
         for (int i = 0; i < 3; i++) {
             map.put(arrText[i],lists.get(i));
         }
-        return jsonResult.ok(map);
+        return JsonResult.ok(map);
 
     }
 

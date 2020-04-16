@@ -28,7 +28,6 @@ public class WebVisitorNumController {
 
     @Autowired
     private WebVisitorNumSerivce webVisitorNumSerivce;
-    private JsonResult jsonResult;
 
 
     /**
@@ -36,9 +35,9 @@ public class WebVisitorNumController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllWebNum",method = RequestMethod.GET)
-    private JsonResult showAllWebNum() {
+    public JsonResult showAllWebNum() {
         List<Object> list = webVisitorNumSerivce.showAllWebNum();
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -69,10 +68,10 @@ public class WebVisitorNumController {
 //     */
 //    @ResponseBody
 //    @RequestMapping(value = "/addWebNum",method = RequestMethod.POST)
-//    private JsonResult addWebNum(@RequestBody WebVisitorNum webVisitorNum) {
+//    public JsonResult addWebNum(@RequestBody WebVisitorNum webVisitorNum) {
 //        int mark = webVisitorNumSerivce.addWebNum(webVisitorNum);
-//        if(mark == 1) return jsonResult.ok();
-//        return jsonResult.errorMessage("操作失败");
+//        if(mark == 1) return JsonResult.ok();
+//        return JsonResult.errorMessage("操作失败");
 //    }
 //
 //
@@ -81,10 +80,10 @@ public class WebVisitorNumController {
 //     */
 //    @ResponseBody
 //    @RequestMapping(value = "/updateWebNum",method = RequestMethod.PUT)
-//    private JsonResult updateWebNum(@RequestBody WebVisitorNum webVisitorNum) {
+//    public JsonResult updateWebNum(@RequestBody WebVisitorNum webVisitorNum) {
 //        int mark = webVisitorNumSerivce.updateWebNum(webVisitorNum);
-//        if (mark == 1) return jsonResult.ok();
-//        return jsonResult.errorMessage("操作失败");
+//        if (mark == 1) return JsonResult.ok();
+//        return JsonResult.errorMessage("操作失败");
 //    }
 
 

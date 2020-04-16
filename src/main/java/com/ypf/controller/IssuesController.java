@@ -18,7 +18,6 @@ public class IssuesController {
 
     @Autowired
     private IssuesService issuesService;
-    private JsonResult jsonResult;
 
 
     /**
@@ -26,14 +25,14 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllIssues",method = RequestMethod.POST)
-    private JsonResult showAllIssues(@RequestBody Map<String,Object> params) {
+    public JsonResult showAllIssues(@RequestBody Map<String,Object> params) {
 
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<Object> list = issuesService.showAllIssues();
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = issuesService.fuzzyFindIssues(params);
-            return jsonResult.ok(list1);
+            return JsonResult.ok(list1);
         }
     }
 
@@ -43,9 +42,9 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/showIssuesOrderByView",method = RequestMethod.GET)
-    private JsonResult showIssuesOrderByView() {
+    public JsonResult showIssuesOrderByView() {
         List<Object> list = issuesService.showIssuesOrderByView();
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -54,9 +53,9 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/findIssuesById",method = RequestMethod.GET)
-    private JsonResult findIssuesById(int id) {
+    public JsonResult findIssuesById(int id) {
         List<Object> list = issuesService.findIssuesById(id);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -65,9 +64,9 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/findIssuesByUserId",method = RequestMethod.POST)
-    private JsonResult findIssuesByUserId(@RequestBody Map<String,Object> params) {
+    public JsonResult findIssuesByUserId(@RequestBody Map<String,Object> params) {
         List<Object> list = issuesService.findIssuesByUserId(params);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -76,10 +75,10 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/addIssues",method = RequestMethod.POST)
-    private JsonResult addIssues(@RequestBody Issues issues) {
+    public JsonResult addIssues(@RequestBody Issues issues) {
         int mark = issuesService.addIssues(issues);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -88,13 +87,13 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateIssues",method = RequestMethod.PUT)
-    private JsonResult updateIssues(@RequestBody Issues issues) {
+    public JsonResult updateIssues(@RequestBody Issues issues) {
         int mark = issuesService.updateIssues(issues);
         if(mark == 1) {
             List<Object> list = issuesService.findIssuesById(issues.getId());
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         }
-        return jsonResult.errorMessage("操作失败");
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -103,10 +102,10 @@ public class IssuesController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteIssuesById/{id}",method = RequestMethod.DELETE)
-    private JsonResult deleteIssuesById(@PathVariable int id) {
+    public JsonResult deleteIssuesById(@PathVariable int id) {
         int mark = issuesService.deleteIssuesById(id);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 }

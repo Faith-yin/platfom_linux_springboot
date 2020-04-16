@@ -17,7 +17,6 @@ public class VideoController {
 
     @Autowired
     private VideoService videoService;
-    private JsonResult jsonResult;
 
 
     /**
@@ -25,13 +24,13 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllVideo",method = RequestMethod.POST)
-    private JsonResult showAllVideo(@RequestBody Map<String,Object> params) {
+    public JsonResult showAllVideo(@RequestBody Map<String,Object> params) {
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<Object> list = videoService.showAllVideo();
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = videoService.fuzzyFindVideo(params);
-            return jsonResult.ok(list1);
+            return JsonResult.ok(list1);
         }
     }
 
@@ -41,13 +40,13 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/showVideo",method = RequestMethod.POST)
-    private JsonResult showVideo(@RequestBody Map<String,Object> params) {
+    public JsonResult showVideo(@RequestBody Map<String,Object> params) {
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<Object> list = videoService.showVideo();
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = videoService.fuzzyVideo(params);
-            return jsonResult.ok(list1);
+            return JsonResult.ok(list1);
         }
     }
 
@@ -57,9 +56,9 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/showVideoOrderByView",method = RequestMethod.GET)
-    private JsonResult showVideoOrderByView() {
+    public JsonResult showVideoOrderByView() {
         List<Object> list = videoService.showVideoOrderByView();
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -68,9 +67,9 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/findVideoById",method = RequestMethod.GET)
-    private JsonResult findVideoById(int id) {
+    public JsonResult findVideoById(int id) {
         List<Object> list = videoService.findVideoById(id);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -79,9 +78,9 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/findVideoByUserId",method = RequestMethod.POST)
-    private JsonResult findVideoByUserId(@RequestBody Map<String,Object> params) {
+    public JsonResult findVideoByUserId(@RequestBody Map<String,Object> params) {
         List<Object> list = videoService.findVideoByUserId(params);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -90,10 +89,10 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/addVideo",method = RequestMethod.POST)
-    private JsonResult addVideo(@RequestBody Video video) {
+    public JsonResult addVideo(@RequestBody Video video) {
         int mark = videoService.addVideo(video);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -102,13 +101,13 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateVideo",method = RequestMethod.PUT)
-    private JsonResult updateVideo(@RequestBody Video video) {
+    public JsonResult updateVideo(@RequestBody Video video) {
         int mark = videoService.updateVideo(video);
         if(mark == 1) {
             List<Object> list = videoService.findVideoById(video.getId());
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         }
-        return jsonResult.errorMessage("操作失败");
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -117,10 +116,10 @@ public class VideoController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteVideo/{id}",method = RequestMethod.DELETE)
-    private JsonResult deleteVideo(@PathVariable int id) {
+    public JsonResult deleteVideo(@PathVariable int id) {
         int mark = videoService.deleteVideo(id);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 

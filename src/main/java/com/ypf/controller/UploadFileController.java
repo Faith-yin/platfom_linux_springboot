@@ -12,7 +12,6 @@ public class UploadFileController {
 
     @Autowired
     private UploadFileService uploadFileService;
-    private JsonResult jsonResult;
 
 
     /**
@@ -20,9 +19,9 @@ public class UploadFileController {
      */
     @ResponseBody
     @RequestMapping(value = "/uploadVideo",method = RequestMethod.POST)
-    private JsonResult uploadVideo(@RequestParam("file")MultipartFile file) throws Exception {
+    public JsonResult uploadVideo(@RequestParam("file")MultipartFile file) throws Exception {
         String str = uploadFileService.videoUpload(file);
-        return jsonResult.ok(str);
+        return JsonResult.ok(str);
     }
 
 
@@ -31,9 +30,9 @@ public class UploadFileController {
      */
     @ResponseBody
     @RequestMapping(value = "/uploadImg",method = RequestMethod.POST)
-    private JsonResult uploadImg(@RequestParam("file")MultipartFile file) throws Exception {
+    public JsonResult uploadImg(@RequestParam("file")MultipartFile file) throws Exception {
         String str = uploadFileService.imgUpload(file);
-        return jsonResult.ok(str);
+        return JsonResult.ok(str);
     }
 
 

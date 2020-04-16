@@ -16,7 +16,6 @@ public class OutsidelinkController {
 
     @Autowired
     private OutsidelinkService outsidelinkService;
-    private JsonResult jsonResult;
 
 
     /**
@@ -24,13 +23,13 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllOutsidelink",method = RequestMethod.POST)
-    private JsonResult showAllOutsidelink(@RequestBody Map<String,Object> params) {
+    public JsonResult showAllOutsidelink(@RequestBody Map<String,Object> params) {
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<Object> list = outsidelinkService.showAllOutsidelink();
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = outsidelinkService.fuzzyFindOutsidelink(params);
-            return jsonResult.ok(list1);
+            return JsonResult.ok(list1);
         }
     }
 
@@ -40,9 +39,9 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/findOutsidelinkById",method = RequestMethod.GET)
-    private JsonResult findOutsidelinkById(int id) {
+    public JsonResult findOutsidelinkById(int id) {
         List<Object> list = outsidelinkService.findOutsidelinkById(id);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -51,10 +50,10 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/addOutsidelink",method = RequestMethod.POST)
-    private JsonResult addOutsidelink(@RequestBody OutsideLink outsideLink) {
+    public JsonResult addOutsidelink(@RequestBody OutsideLink outsideLink) {
         int mark = outsidelinkService.addOutsidelink(outsideLink);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -63,13 +62,13 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateOutsidelink",method = RequestMethod.PUT)
-    private JsonResult updateOutsidelink(@RequestBody OutsideLink outsideLink) {
+    public JsonResult updateOutsidelink(@RequestBody OutsideLink outsideLink) {
         int mark = outsidelinkService.updateOutsidelink(outsideLink);
         if(mark == 1) {
             List<Object> list = outsidelinkService.findOutsidelinkById(outsideLink.getId());
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         }
-        return jsonResult.errorMessage("操作失败");
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -78,10 +77,10 @@ public class OutsidelinkController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteOutsidelink/{id}",method = RequestMethod.DELETE)
-    private JsonResult deleteOutsidelink(@PathVariable int id) {
+    public JsonResult deleteOutsidelink(@PathVariable int id) {
         int mark = outsidelinkService.deleteOutsidelink(id);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 

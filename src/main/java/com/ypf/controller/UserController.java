@@ -18,7 +18,6 @@ public class UserController {
     private UserService userService;
     @Autowired
     private WebVisitorNumController webVisitorNumController;
-    private JsonResult jsonResult;
 
 
 
@@ -28,13 +27,13 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllUser",method = RequestMethod.POST)
-    private JsonResult showAllUser(@RequestBody Map<String,Object> params) {
+    public JsonResult showAllUser(@RequestBody Map<String,Object> params) {
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<User> list = userService.showAllUser();
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = userService.fuzzyFindUser(params);
-            return jsonResult.ok(list1);
+            return JsonResult.ok(list1);
         }
     }
 
@@ -44,15 +43,15 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/findUserByNameAndPassword",method = RequestMethod.POST)
-    private JsonResult findUserByNameAndPassword(@RequestBody User user) {
+    public JsonResult findUserByNameAndPassword(@RequestBody User user) {
         List<User> list = userService.findUserByNameAndPassword(user);
         //检验查询的用户名和密码是否已注册
         //未注册时：
-        if(list == null || list.isEmpty()) return jsonResult.errorMessage("用户名或密码输入错误");
+        if(list == null || list.isEmpty()) return JsonResult.errorMessage("用户名或密码输入错误");
         //已注册：添加访问量+1
         Boolean mark = webVisitorNumController.updateWebNumById();
-        if (mark) return jsonResult.ok(list);
-        return jsonResult.errorMessage("增加访问量出错");
+        if (mark) return JsonResult.ok(list);
+        return JsonResult.errorMessage("增加访问量出错");
 
     }
 
@@ -64,14 +63,14 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
-    private JsonResult addUser(@RequestBody User user) {
+    public JsonResult addUser(@RequestBody User user) {
         //校验要修改的用户名称是否已存在
         List<User> list = userService.findUserByName(user.getUsername());
-        if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
+        if(list != null && !list.isEmpty()) return JsonResult.errorMessage("该名称已存在");
         //不存在时
         int mark = userService.addUser(user);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -82,14 +81,14 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateUserById",method = RequestMethod.PUT)
-    private JsonResult updateUserById(@RequestBody User user) {
+    public JsonResult updateUserById(@RequestBody User user) {
         //校验要修改的用户名称是否已存在
         List<User> list = userService.findUserByName(user.getUsername());
-        if(list != null && !list.isEmpty()) return jsonResult.errorMessage("该名称已存在");
+        if(list != null && !list.isEmpty()) return JsonResult.errorMessage("该名称已存在");
         //不存在时
         int mark = userService.updateUserById(user);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -98,10 +97,10 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateUserPassword/{id}",method = RequestMethod.PUT)
-    private JsonResult updateUserPassword(@PathVariable int id) {
+    public JsonResult updateUserPassword(@PathVariable int id) {
         int mark = userService.updateUserPassword(id);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -112,10 +111,10 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteUserById/{id}",method = RequestMethod.DELETE)
-    private JsonResult deleteUserById(@PathVariable int id) {
+    public JsonResult deleteUserById(@PathVariable int id) {
         int mark = userService.deleteUserById(id);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 }

@@ -19,7 +19,6 @@ public class IssuesCommentController {
     private IssuesCommentService issuesCommentService;
     @Autowired
     private IssuesService issuesService;
-    private JsonResult jsonResult;
 
 
     /**
@@ -27,13 +26,13 @@ public class IssuesCommentController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllIssuesComment",method = RequestMethod.POST)
-    private JsonResult showAllIssuesComment(@RequestBody Map<String,Object> params) {
+    public JsonResult showAllIssuesComment(@RequestBody Map<String,Object> params) {
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<Object> list = issuesCommentService.showAllIssuesComment();
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = issuesCommentService.fuzzyFindIssuesComment(params);
-            return jsonResult.ok(list1);
+            return JsonResult.ok(list1);
         }
     }
 
@@ -43,9 +42,9 @@ public class IssuesCommentController {
      */
     @ResponseBody
     @RequestMapping(value = "/findIssuesCommentByIssuesId/{issueId}",method = RequestMethod.POST)
-    private JsonResult findIssuesCommentByIssuesId(@PathVariable("issueId") int issueId) {
+    public JsonResult findIssuesCommentByIssuesId(@PathVariable("issueId") int issueId) {
         List<Object> list = issuesCommentService.findIssuesCommentByIssuesId(issueId);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -54,17 +53,17 @@ public class IssuesCommentController {
      */
     @ResponseBody
     @RequestMapping(value = "/addIssuesComment",method = RequestMethod.POST)
-    private JsonResult addIssuesComment(@RequestBody IssuesComment issuesComment) {
+    public JsonResult addIssuesComment(@RequestBody IssuesComment issuesComment) {
         //添加评论
         int mark = issuesCommentService.addIssuesComment(issuesComment);
         if(mark == 1) {
             //更新对应issue问题下评论数目 +1
             int mark1 = issuesService.updateIssuesCommentNum(issuesComment.getIssueId());
             if(mark1 == 1) {
-                return jsonResult.ok();
+                return JsonResult.ok();
             }
         }
-        return jsonResult.errorMessage("操作失败");
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -73,10 +72,10 @@ public class IssuesCommentController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateIssuesComment",method = RequestMethod.PUT)
-    private JsonResult updateIssuesComment(@RequestBody IssuesComment issuesComment) {
+    public JsonResult updateIssuesComment(@RequestBody IssuesComment issuesComment) {
         int mark = issuesCommentService.updateIssuesComment(issuesComment);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -86,10 +85,10 @@ public class IssuesCommentController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteIssuesComment/{id}",method = RequestMethod.DELETE)
-    private JsonResult deleteIssuesComment(@PathVariable int id) {
+    public JsonResult deleteIssuesComment(@PathVariable int id) {
         int mark = issuesCommentService.deleteIssuesComment(id);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 

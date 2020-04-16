@@ -18,9 +18,6 @@ public class InformationController {
 
     @Autowired
     private InformationService informationService;
-    @Autowired
-    private AdminService adminService;
-    private JsonResult jsonResult;
 
 
     /**
@@ -28,13 +25,13 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/showAllInformation",method = RequestMethod.POST)
-    private JsonResult showAllInformation(@RequestBody Map<String,Object> params) {
+    public JsonResult showAllInformation(@RequestBody Map<String,Object> params) {
         if(params.get("value") == null || params.get("value") == "") { //如果没有入参,就查询全部
             List<Object> list = informationService.showAllInformation();
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         } else { //如果有入参，就模糊查询
             List<Object> list1 = informationService.fuzzyFindInformation(params);
-            return jsonResult.ok(list1);
+            return JsonResult.ok(list1);
         }
     }
 
@@ -44,9 +41,9 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/findInformationById",method = RequestMethod.GET)
-    private JsonResult findInformationById(int id) {
+    public JsonResult findInformationById(int id) {
         List<Object> list = informationService.findInformationById(id);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -55,9 +52,9 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/findInformationByAdminId",method = RequestMethod.POST)
-    private JsonResult findInformationByAdminId(int adminId) {
+    public JsonResult findInformationByAdminId(int adminId) {
         List<Information> list = informationService.findInformationByAdminId(adminId);
-        return jsonResult.ok(list);
+        return JsonResult.ok(list);
     }
 
 
@@ -66,10 +63,10 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/addInformation",method = RequestMethod.POST)
-    private JsonResult addInformation(@RequestBody Information information) {
+    public JsonResult addInformation(@RequestBody Information information) {
         int mark = informationService.addInformation(information);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -78,13 +75,13 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateInformation",method = RequestMethod.PUT)
-    private JsonResult updateInformation(@RequestBody Information information) {
+    public JsonResult updateInformation(@RequestBody Information information) {
         int mark = informationService.updateInformation(information);
         if(mark == 1) {
             List<Object> list = informationService.findInformationById(information.getId());
-            return jsonResult.ok(list);
+            return JsonResult.ok(list);
         }
-        return jsonResult.errorMessage("操作失败");
+        return JsonResult.errorMessage("操作失败");
     }
 
 
@@ -93,10 +90,10 @@ public class InformationController {
      */
     @ResponseBody
     @RequestMapping(value = "/deleteInformation/{id}",method = RequestMethod.DELETE)
-    private JsonResult deleteInformation(@PathVariable("id") int id) {
+    public JsonResult deleteInformation(@PathVariable("id") int id) {
         int mark = informationService.deleteInformation(id);
-        if(mark == 1) return jsonResult.ok();
-        return jsonResult.errorMessage("操作失败");
+        if(mark == 1) return JsonResult.ok();
+        return JsonResult.errorMessage("操作失败");
     }
 
 
